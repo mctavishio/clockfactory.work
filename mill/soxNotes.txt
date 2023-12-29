@@ -1,0 +1,192 @@
+
+http://sox.sourceforge.net/sox.html
+manual
+
+
+
+https://madskjeldgaard.dk/posts/sox-tutorial-cli-tape-music/
+
+http://manpages.ubuntu.com/manpages/bionic/man1/sox.1.html#filenames
+sox -m "typewriterlongcistern.mp3" "bird2.mp3" "out.mp3"
+play  "out.mp3" bass +3
+
+sox "bird2.mp3" -p repeat 6 | sox - -m "typewriterlongcistern.mp3" "outstereo.mp3"
+
+sox "bird2.mp3" -p repeat 6 | sox - -m "recording.wav" "recordbird.mp3"
+
+sox recordbird.mp3 outputbird.mp3 pitch -200
+sox out.mp3 outslow.mp3 tempo -s 0.5
+
+https://linux.die.net/man/1/sox
+record 10s of audio stereo
+
+rec -c 2 test.aiff trim 0 10 
+rec -r 41000 -c 2 recording.wav
+
+soxi out.mp3
+(info)
+
+play -n -c1 synth sin %-12 sin %-9 sin %-5 sin %-2 fade h 0.1 1 0.1
+https://ffmpeg.org/ffmpeg-filters.html#amerge
+https://stackoverflow.com/questions/14498539/how-to-overlay-downmix-two-audio-files-using-ffmpeg
+
+
+ffmpeg -i bird2.mp3 -i typewriterlongcistern.mp3 -filter_complex amix=inputs=2:duration=longest output3.mp3
+ffmpeg -i bird2.mp3 -i typewriterlongcistern.mp3 -filter_complex amerge=inputs=2 -ac 2 output4.mp3
+
+https://madskjeldgaard.dk/posts/sox-tutorial-batch-processing/
+
+ffmpeg -i bird0.mp3 -i bird2.mp3 -i bird3.mp3 -filter_complex "amerge=inputs=3,pan=stereo|c0<c0+c1+c4|c1<c2+c3+c5" output5.mp3
+
+normalize files ::: https://madskjeldgaard.dk/posts/sox-tutorial-batch-processing/
+for file in *.mp3; do sox "$file" "n_$file" norm -4; done
+change channels
+for file in *.wav; do sox "$file" "mono_$file" channels 1; done
+change sample rate
+for file in *.wav; do sox "$file" "48khz_$file" rate 48k; done
+change bit rate
+for file in *.wav; do sox "$file" -b 16 "16bit_$file"; done
+
+https://madskjeldgaard.dk/posts/sox-tutorial-cli-tape-music/
+
+for file in *.mp3; do soxi -D $file | read x ; echo {$file: $x}, ; done
+for file in *.mp3; do soxi -r $file | read x ; echo {$file: $x}, ; done
+for file in ?(*.mp3|*.wav); do soxi -D $file | read d ; soxi -c $file | read c ; soxi -r $file | read r ; soxi -t $file | read t ; soxi -p $file | read p ;echo {file:$file, duration:$x, nchannels:$y, rate:$r, type:$t, bitrate:$p}, ; done
+
+sox bird2.mp3 -p pad 1 0 | sox - -m bird2.mp3 -p pad 2 0 | sox - -m bird2.mp3 combinedbird2.mp3
+sox --combine merge "|sox -n -p synth 1 sine 300" "|sox -n -p synth 1 sine 400" useful.wav
+
+https://www.audiosciencereview.com/forum/index.php?threads/howto-sox-audio-tool-as-a-signal-generator.4242/
+sox -V -r 48000 -n -b 16 -c 2 sin1k.wav synth 30 sin 1000 vol -10dB
+-V ... this argument can be omitted, but it enables verbose output, so we can check input/output parameters and effect that are used​
+-r 48000 -n ... (input specification) sets sample rate 48k for this session and specifies that there is no input file​
+-b 16 -c 2 sin1k.wav ... (output specification) 16 bit output file with two channels named sin1k.wav​
+synth 30 sin 1000 ... (1st effect) synthesizes 30 seconds of sine signal at frequency 1000Hz with max. amplitude​
+vol -10dB ... (2nd effect) applies 10dB attenuation to a generated signal​
+
+lfo
+ffmpeg -i vox20200118_8_3b_mixdown.mp3 -filter:a "highpass=f=200, lowpass=f=9000" outputlfo.mp3
+The frequency is set in Hz so in this example we are filtering out all frequencies that are out of [200, 3000].
+
+ffmpeg -i outputlfo.mp3 -filter:a "highpass=f=1000, lowpass=f=20000" outputlfo2.mp3
+
+ffmpeg -i outputlfo.mp3 -filter:a "highpass=f=1000, lowpass=f=20000" outputlfo2.mp3
+
+
+https://ostechnix.com/20-ffmpeg-commands-beginners/
+
+sox bird2.mp3 -p trim 00:00:01 0.5 pad 0 1 | sox - bird2beat.mp3 repeat 32
+
+sox -m bird2.mp3 "|sox bird2.mp3 -p trim 00:00:01 0.5 pad 0 1 repeat 32" "|sox bird2.mp3 -p trim 00:00:01 0.5 pad 0 0.4 repeat 32" outbirdtest.mp3
+
+sox outbirdtest.mp3 outbirdtest2.mp3 reverse flanger 2 speed 0.5 reverb
+sox outbirdtest2.mp3 outbirdtest3.mp3 stretch 0.5 reverse reverb norm -6
+
+play outbirdtest.mp3 reverb 1.0 600.0 180.0 200.0 220.0 240.0 280.0 300.0
+play outbirdtest.mp3 gain -3 pad 0 3 reverb
+
+example: fade in & normalize & change format
+sox recital.au −b 16 recital.wav channels 1 rate 16k fade 3 norm
+
+
+play vox20200118_8_3b_mixdown.mp3 echo 0.8 0.9 1000.0 0.3
+play vox20200118_8_3b_mixdown.mp3 chorus 0.7 0.9 55.0 0.4 0.25 2.0 -t
+play bird2.mp3 chorus 0.5 0.9 50.0 0.4 0.25 2.0 -t 60.0 0.32 0.4 2.3 -t 40.0 0.3 0.3 1.3 -s
+play bird2.mp3 flanger 0.9 0.9 4.0 0.23 1.3 -s
+mkdir -p ./tmp;
+for f in *.mp4;
+do
+    title=${f%.mp4};
+    echo -e "\n\n$f - Splitting Audio and video files...";
+    mv ./"$f" ./tmp/"$title"_O.mp4 && ffmpeg -i ./tmp/"$title"_O.mp4 -c:a pcm_s16le -ar 128k -vn ./tmp/"$title"_noisy.wav;
+    ffmpeg -i ./tmp/"$title"_O.mp4 -c copy -an ./"$title"_v.mp4;
+
+    echo "Adding Silence at the end...";
+    sox ./tmp/"$title"_noisy.wav ./tmp/"$title"_noisy_s.wav pad 0 0.010 && rm -rf ./tmp/"$title"_noisy.wav;
+
+    echo "Sox process started...";
+    sox -v 0.80 ./tmp/"$title"_noisy_s.wav ./"$title".wav noisered ./allnoise_profile 0.30 && rm -rf ./tmp/"$title"_noisy_s.wav;
+
+    echo -e "Sox finished... \nMerging Audio and video files...";
+    ffmpeg -loglevel warning -stats -y -i ./"$title"_v.mp4 -i ./"$title".wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 96k ./"$f";
+    rm -rf ./"$title"_v.mp4 ./"$title".wav;
+done
+
+
+sox flanger :::
+mill % play bird2.mp3 flanger 20 4 20 60 2 triangle 25 lin
+[delay depth regen width speed shape phase interp]
+RANGE DEFAULT DESCRIPTION
+delay   0 30    0    base delay in milliseconds
+depth   0 10    2    added swept delay in milliseconds
+regen -95 +95   0    percentage regeneration (delayed signal feedback)
+width   0 100   71   percentage of delayed signal mixed with original
+speed  0.1 10  0.5   sweeps per second (Hz) 
+shape    --    sin   swept wave shape: sine|triangle
+phase   0 100   25   swept wave percentage phase-shift for multi-channel
+                     (e.g. stereo) flange; 0 = 100 = same phase on each channel
+interp   --    lin   delay-line interpolation: linear|quadratic
+
+play bird2.mp3 flanger 20 4 20 60 2 triangle 25 lin
+[delay depth regen width speed shape phase interp]
+
+play -n synth -j 3 sin %3 sin %-2 sin %-5 sin %-9 \
+                   sin %-14 sin %-21 fade h .01 2 1.5 delay \
+                   1.3 1 .76 .54 .27 remix - fade h 0 2.7 2.5 norm -1
+
+play -n synth 1 pluck E3 pluck C3 repeat 2
+
+
+special filenames
+The following special filenames may be used in certain circumstances in place of a normal filename on the command line:
+--sox-pipe
+--null
+
+sox global flags 
+--show-progress
+--volume
+--combine concatenate|merge|mix|mix-power|sequence
+---effects-file
+
+Input & Output File Format Options
+
+These options apply to the input or output file whose name they immediately precede on the command line
+--channels
+--rate
+
+https://www.talkunafraid.co.uk/2011/01/audio-tools-for-linux-commandline-geeks/
+http://dsl.org/cookbook/cookbook_29.html
+
+play bird2.mp3 pad 0 3 echos 0.7 0.89 4000.0 0.4 2000 0.6 1000 0.4 4000 0.4 bend .35,280,.25 0.15,-400,0.25
+
+play -m bird0.mp3 bird2.mp3 pad 0 5 echos 0.7 0.89 4000.0 0.4 2000 0.6 2000 0.4 4000 0.4 bend .35,280,.25 0.15,-400,0.25 0.2,-200,0.5 compand 0.02,0.20 5:-60,-40,-10 -5 -90 0.1 gain -4
+
+sox asz.wav asz-car.wav compand 0.3,1 6:−70,−60,−20 −5 −90 0.2
+about audio standards for different contexts : https://forum.doom9.org/showthread.php?t=165807
+play bird2.mp3 compand 0.02,0.20 5:-60,-40,-10 -5 -90 0.1
+
+note: spoken word is often in mono ... is best in mono
+use: sox bird2.mp3 --null stats
+https://www.deborahbalm.com/post/using-sox-on-macos-for-audiobook-narrators
+https://help.acx.com/s/article/audiobook-production-guidance-rms
+sox --info bird2.mp3
+
+then 
+
+https://www.thegeekstuff.com/2009/05/sound-exchange-sox-15-examples-to-manipulate-audio-files/
+
+https://www.moellerstudios.org/getting-stats-on-a-sound-file/
+
+for file in *.mp3; do echo $file ; play $file trim 0 0:2 -0:10; done
+
+ffmpeg -i vox20200118_8_3b_mixdown.mp3 -filter_complex 'acrossover=split=1500:order=8th[LOW][HIGH]' -map '[LOW]' lowvox.mp3 -map '[HIGH]' highvox.mp3
+
+https://github.com/leandromoreira/ffmpeg-libav-tutorial
+https://www.youtube.com/watch?v=MPV7JXTWPWI
+
+ffmpeg -i vox20200118_8_3b_mixdown.mp3 -filter_complex 'acrossover=split=200 1500:order=8th[LOW][MID][HIGH]' -map '[MID]' midvox.mp3 -map '[LOW]' lowvox.mp3 -map '[HIGH]' highvox.mp3
+
+play -n synth sine 440 trim 0 1 gain -12
+
+sox ../bird2.mp3 -n stat
+

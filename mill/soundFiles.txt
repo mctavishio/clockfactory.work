@@ -1,0 +1,3 @@
+file '../../soundfactory/data/mctvox1/mctvox1_1642885025800/mctvox1_twist_all_thread_003_echo.mp3'
+file '../../soundfactory/data/clarinetnotes/clarinet_1641968730764/clarinet1_clarinetnotes_e_thread_simple_all.mp3'
+file '../../soundfactory/data/knocking/knocking_1642282509441/knocking2_thread_simple_all.mp3'
