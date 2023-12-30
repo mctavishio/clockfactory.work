@@ -124,7 +124,7 @@ let framesobj = [...new Array(nticks).keys()].flatMap( j => {
 			text: "", 
 		}
 		*/
-		let elementdraw = B.elements.map( layer => {
+		let elementdraw = Bfilm.elements.map( layer => {
 			return layer.map( el => {
 				let jd = k%el.b.length;
 				//console.log(el.role);

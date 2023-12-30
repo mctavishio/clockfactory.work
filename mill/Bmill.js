@@ -43,28 +43,38 @@ const colorseq = [...new Array(nx).keys()].map(x=> {
 });
 
 //console.log(`colorseq = ${JSON.stringify(colorseq)}`);
-const xgrid = tools.shuffle(input.xgrid);
-const ygrid = tools.shuffle(input.ygrid);
+const xgrid = input.xgrid;
+const ygrid = input.ygrid;
+console.log(`xgrid=${JSON.stringify(xgrid)}`);
+//const xgrid = tools.shuffle(input.xgrid);
+//const ygrid = tools.shuffle(input.ygrid);
 
 //x,y,e,z
 let elements = [];
-elements[0] = [{tag:"rect",role:"rect",n:0,x:0,y:0,z:0,e:0,cx:0,cy:0,w:1,h:1,sw:0.8,sf:0,sd:1,so:1,fo:1,strokecolor:pigments.warmblack,fillcolor:pigments.warmlightwhite}];
-let count=1;
+elements[0] = [
+	{tag:"rect",role:"rect",n:0,x:0,y:0,z:0,e:0,cx:0,cy:0,w:1,h:1,sw:0.04,sf:0,sd:4,so:1,fo:1,strokecolor:pigments.warmblack,fillcolor:pigments.warmlightwhite},
+	{tag:"rect",role:"rect",n:0,x:0,y:0,z:0,e:1,cx:0.1,cy:0.1,w:0.8,h:0.8,sw:0.04,sf:0.4,sd:1.4,so:1,fo:1,strokecolor:pigments.warmgray,fillcolor:pigments.warmlightwhite}
+];
+let count=0;
 [...new Array(nz).keys()].map(z=>z+1).forEach( z=> {
 	elements[z] = [];
-	[...new Array(ny).keys()].forEach( y=> {
-		[...new Array(nx).keys()].forEach( x=> {
-			elements[z].push({tag:"line", role:"hline", x,y,z,e:0,n:count, cx:xgrid[x], cy:ygrid[y], so:1.0, fo:0.0, strokecolor:colorseq[x][y][0][z], fillcolor:colorseq[x][y][0][z]});
-			elements[z].push({tag:"line", role:"vline", x,y,z,e:1,n:count+1, cx:xgrid[x], cy:ygrid[y], so:1.0, fo:0.0, strokecolor:colorseq[x][y][1][z], fillcolor:colorseq[x][y][1][z]});
-			elements[z].push({tag:"circle", role:"fcircle", x,y,z,e:2, n:count+2, cx:0.5, cy:0.5, so:0.0, fo:1.0, strokecolor:colorseq[x][y][2][z], fillcolor:colorseq[x][y][2][z]}); 
-			elements[z].push({tag:"circle", role:"scircle", x,y,z,e:3, n:count+3, cx:0.5, cy:0.5, so:1.0, fo:0.0, strokecolor:colorseq[x][y][3][z], fillcolor:colorseq[x][y][3][z]}); 
-			count = count + ne;
+	[...new Array(nx).keys()].forEach( x=> {
+		[...new Array(ny).keys()].forEach( y=> {
+			let e = -1;
+			++e;++count;
+			elements[z].push({tag:"line", role:"vline", x,y,z,e,n:count, cx:xgrid[x], cy:ygrid[y], so:1.0, fo:0.0, strokecolor:colorseq[x][y][e][z], fillcolor:colorseq[x][y][e][z]});
+			++e;++count;
+			elements[z].push({tag:"line", role:"hline", x,y,z,e,n:count, cx:xgrid[x], cy:ygrid[y], so:1.0, fo:0.0, strokecolor:colorseq[x][y][e][z], fillcolor:colorseq[x][y][e][z]});
+			++e;++count;
+			elements[z].push({tag:"circle", role:"fcircle", x,y,z,e, n:count, cx:xgrid[x], cy:ygrid[y], so:0.0, fo:1.0, strokecolor:colorseq[x][y][e][z], fillcolor:colorseq[x][y][e][z]}); 
+			++e;++count;
+			elements[z].push({tag:"circle", role:"scircle", x,y,z,e, n:count, cx:xgrid[x], cy:ygrid[y], so:1.0, fo:0.0, strokecolor:colorseq[x][y][e][z], fillcolor:colorseq[x][y][e][z]}); 
 		});
 	});
 });
 
-let rmax = Math.floor(400/nmax);
-let rmin = 18;
+let rmax = Math.floor(200/nmax);
+let rmin = 8;
 const rseq = [...new Array(nticks).keys()].map( t=> {
 	return [...new Array(nx).keys()].map( x=> {
 		return [...new Array(ny).keys()].map( y=> {
@@ -75,7 +85,7 @@ const rseq = [...new Array(nticks).keys()].map( t=> {
 //console.log(`rseq = ${JSON.stringify(rseq,null," ")}`);
 
 let sdmax = Math.floor(40/nmax);
-let sdmin = 8;
+let sdmin = 4;
 const sdseq = [...new Array(nticks).keys()].map( t=> {
 	return [...new Array(nx).keys()].map( x=> {
 		return [...new Array(ny).keys()].map( y=> {
@@ -117,7 +127,7 @@ let Bfilm = {
 		});
 	})
 }
-const dotween = () => { return tools.randominteger(0,100) < 98 }
+const dotween = () => { return tools.randominteger(0,100) < 99 }
 const ischange = () => { return tools.randominteger(0,100) > 8 }
 
 /* layer 0
@@ -141,11 +151,17 @@ const ischange = () => { return tools.randominteger(0,100) > 8 }
 [...new Array(nz).keys()].map(z=>z+1).forEach( z => { 
 	B.elements[z].forEach( (el,j) => {
 		let bframe = [...new Array(nticks).keys()].reduce( (acc,t) => {
-			let sw = Math.round(100*rseq[t][el.x][el.y]*mult[t][el.z])/100;
-			let r = Math.round(100*rseq[t][el.x][el.y]*mult[t][el.z])/100;
-			let sd = Math.round(100*sdseq[t][el.x][el.y]*mult[t][el.z])/100;
-			let sf = tools.randominteger(0,100)/100;
+			let sw = rseq[t][el.x][el.y]*mult[t][el.z];
+			let r = rseq[t][el.x][el.y]*mult[t][el.z];
+			let sd = sdseq[t][el.x][el.y]*mult[t][el.z];
+			let sf = 0;
+			//let sf = tools.randominteger(0,100)/100;
 			//console.log(`mult[t][el.z] = ${mult[t][el.z]}, rseq[t][el.x][el.y] = ${rseq[t][el.x][el.y]}`);
+			/*
+			if(el.role==="scircle") {r = r*0.8;}
+			else if(el.role==="fcircle") {r = r*0.6;}
+			else if(el.tag==="line") {r = r*0.5;}
+			*/
 			let bt = [];
 			if( t===0 || ischange() || t===nticks-1 ) {
 				bt = { r, sw, sf, sd };
@@ -159,10 +175,17 @@ const ischange = () => { return tools.randominteger(0,100) > 8 }
 			let t = tools.randominteger(1,nticks-2);
 			bframe[t] = tools.tween(bframe[t-1],bframe[t+1],1,2);
 		});
-		[...new Array(Math.floor(nticks/4)).keys()].forEach(x=> {
+		
+		[...new Array(Math.floor(nticks/5)).keys()].forEach(x=> {
 			let t = tools.randominteger(1,nticks-3);
 			bframe[t] = tools.tween(bframe[t-1],bframe[t+2],1,3);
 			bframe[t+1] = tools.tween(bframe[t-1],bframe[t+2],2,3);
+		});
+		[...new Array(Math.floor(nticks/8)).keys()].forEach(x=> {
+			let t = tools.randominteger(1,nticks-4);
+			bframe[t] = tools.tween(bframe[t-1],bframe[t+3],1,4);
+			bframe[t+1] = tools.tween(bframe[t-1],bframe[t+3],2,4);
+			bframe[t+2] = tools.tween(bframe[t-1],bframe[t+3],3,4);
 		});
 
 		el.b = bframe;
@@ -180,8 +203,11 @@ const ischange = () => { return tools.randominteger(0,100) > 8 }
 				let tag = t<nticks/2 ? "circle" : "line";
 				if(Bfilm.elements[z][j].tag===tag) {istween = 1}
 			}
+			
 			return [...new Array(fps).keys()].map( f => {
+				//console.log(`f=${f} t=${t} istween=${istween}`);
 				let step = istween ? tools.tween(p1,p2,f,fps) : bframe[tools.randominteger(0,bframe.length)];
+				//console.log(`p1=${JSON.stringify(p1)} p2=${JSON.stringify(p2)} step = ${JSON.stringify(step)}`);
 				return step; 
 			});
 		});

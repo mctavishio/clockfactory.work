@@ -1,6 +1,6 @@
 let input =
 	{
-	"duration": 1,
+	"duration": 2,
 	"fps": 24,
 	"chords": [
 		{
@@ -343,21 +343,21 @@ let input =
 					{
 						"lowi": 0,
 						"bassi": 1,
-						"bassV": 3,
-						"bassIV": 3,
+						"bassV": 1,
+						"bassIV": 1,
 						"I": 6,
-						"II": 0,
+						"II": 1,
 						"majIII": 0,
-						"miniii": 6,
-						"IV": 6,
-						"V": 6,
+						"miniii": 1,
+						"IV": 1,
+						"V": 1,
 						"VI": 0,
 						"majVII": 0,
-						"minvii": 4,
-						"VIII": 2,
+						"minvii": 0,
+						"VIII": 0,
 						"lownoise": 1,
-						"midnoise": 3,
-						"highnoise": 0,
+						"midnoise": 1,
+						"highnoise": 1,
 						"noise": 0,
 						"buzz": 0
 					}
@@ -375,20 +375,52 @@ let input =
 					{
 						"lowi": 0,
 						"bassi": 1,
-						"bassV": 3,
-						"bassIV": 3,
+						"bassV": 1,
+						"bassIV": 1,
+						"I": 6,
+						"II": 1,
+						"majIII": 0,
+						"miniii": 1,
+						"IV": 1,
+						"V": 1,
+						"VI": 0,
+						"majVII": 0,
+						"minvii": 0,
+						"VIII": 0,
+						"lownoise": 1,
+						"midnoise": 1,
+						"highnoise": 1,
+						"noise": 0,
+						"buzz": 0
+					}
+				]
+			]
+		},
+		{
+			"gain": 0.4,
+			"padmin": 10,
+			"padmax": 400,
+			"list": [
+				[
+					"piano1",
+					1,
+					{
+						"lowi": 0,
+						"bassi": 0,
+						"bassV": 0,
+						"bassIV": 0,
 						"I": 6,
 						"II": 0,
 						"majIII": 0,
-						"miniii": 6,
-						"IV": 6,
-						"V": 6,
+						"miniii": 1,
+						"IV": 1,
+						"V": 1,
 						"VI": 0,
 						"majVII": 0,
-						"minvii": 4,
-						"VIII": 2,
-						"lownoise": 1,
-						"midnoise": 3,
+						"minvii": 0,
+						"VIII": 0,
+						"lownoise": 0,
+						"midnoise": 1,
 						"highnoise": 0,
 						"noise": 0,
 						"buzz": 0
@@ -397,26 +429,19 @@ let input =
 			]
 		}
 	],
-	"nx": 4,
-	"ny": 4,
-	"nz": 4,
+	"nx": 3,
+	"ny": 3,
+	"nz": 5,
 	"xgrid": [
-		0,
-		0.33,
-		0.66,
-		1
+		0.5,
+		0.5,
+		0.5
 	],
 	"ygrid": [
-		0,
-		0.33,
-		0.66,
-		1
+		0.5,
+		0.5,
+		0.5
 	],
-	"nrects": 0,
-	"ncircles": 4,
-	"nlines": 4,
-	"nhlines": 4,
-	"nvlines": 4,
 	"pigments": {
 		"red": "#8F0000",
 		"yellow": "#ffcc00",
@@ -2052,11 +2077,23 @@ let input =
 	],
 	"allcolors": [
 		"#fdfdf3",
-		"#191918",
 		"#fdfdf3",
-		"#191918",
 		"#fdfdf3",
-		"#8F0000"
+		"#fdfdf3",
+		"#fdfdf3",
+		"#fdfdf3",
+		"#fdfdf3",
+		"#fdfdf3",
+		"#fdfdf3",
+		"#4b4b44",
+		"#4b4b44",
+		"#656560",
+		"#656560",
+		"#656560",
+		"#656560",
+		"#656560",
+		"#656560",
+		"#ffcc00"
 	],
 	"bookunits": "in",
 	"bookwidth": 8,
@@ -2069,6 +2106,7 @@ let input =
 	"cssstyles": "",
 	"npoems": 80,
 	"nstanzas": 3,
+	"nlines": 4,
 	"nchars": 48,
 	"weights": [
 		0,

@@ -15,44 +15,45 @@ const inputfile = `./input.js`;
 const fps = 24;
 const spicecolors = [pigments.warmlightwhite, pigments.warmlightwhite, pigments.warmblack, pigments.warmgray, pigments.yellow]; 
 const colors = colorsets.warmbw; 
-const allcolors = [pigments.warmlightwhite,pigments.warmblack,pigments.warmlightwhite,pigments.warmblack,pigments.warmlightwhite,pigments.red];
-/*
-const allcolors = [[[[pigments.warmlightwhite, pigments.warmblack],3],[[pigments.red, pigments.warmlightwhite, pigments.warmblack],1],[[pigments.warmlightwhite, pigments.warmblack],2],[[pigments.warmgray, pigments.warmlightwhite, pigments.warmblack],1]].map(wx=>{
+//const allcolors = [pigments.warmlightwhite,pigments.warmblack,pigments.yellow,pigments.warmlightwhite,pigments.warmlightwhite,pigments.warmblack,pigments.warmlightwhite,pigments.warmblack];
+const colorweights = [
+	[pigments.warmlightwhite,9],
+	[pigments.warmblack,0],
+	[pigments.warmgray,2],
+	[pigments.warmlightgray,6],
+	[pigments.red,0],
+	[pigments.yellow,1],
+	[pigments.blue,0],
+];
+
+const allcolors = colorweights.flatMap(wx=>{
 	return [...new Array(wx[1]).keys()].map( w=>wx[0] );
-}).flat(2)];
-*/
-/*
-	//allcolors: (pigments)=>{ return [pigments.warmlightwhite,pigments.warmblack,pigments.warmlightwhite,pigments.red,pigments.warmlightwhite,pigments.warmlightblack,pigments.warmlightwhite,pigments.warmlightwhite,pigments.warmblack,pigments.warmlightwhite,pigments.warmblack,pigments.warmlightwhite,pigments.yellow,pigments.warmblack]},
-	//allcolors: (pigments)=>{ return [pigments.warmlightwhite,pigments.warmblack,pigments.warmlightwhite,pigments.warmgray,pigments.warmlightwhite,pigments.warmlightblack,pigments.warmlightwhite,pigments.warmlightwhite,pigments.warmblack,pigments.warmlightwhite,pigments.warmblack,pigments.warmlightwhite,pigments.yellow,pigments.warmblack,pigments.warmlightwhite,pigments.red,pigments.warmblack]},
-	allcolors: (pigments)=>{ return [pigments.warmlightwhite,pigments.warmblack,pigments.warmlightwhite,pigments.red,pigments.warmlightwhite,pigments.warmlightblack,pigments.warmlightwhite,pigments.warmlightwhite,pigments.warmblack,pigments.warmlightwhite,pigments.warmblack,pigments.warmlightwhite,pigments.yellow,pigments.warmblack,pigments.warmlightwhite,pigments.red,pigments.warmblack]},
-	//allcolors: (pigments)=>{ return [pigments.warmlightwhite,pigments.warmblack,pigments.warmlightwhite,pigments.warmlightblack,pigments.warmlightwhite,pigments.blue,pigments.warmlightwhite,pigments.warmblack,pigments.warmlightwhite,pigments.warmblack,pigments.warmlightwhite,pigments.blue,pigments.warmblack,pigments.warmlightwhite,pigments.blue,pigments.warmblack]},
-	//spicecolors: (pigments)=>{ return [pigments.blue]},
-	spicecolors: (pigments)=>{ return [pigments.red,pigments.yellow]},
-*/
-const nx = 4;
-const ny = 4;
-const nz = 4;
+});
 
-const nrects = 0;
-const ncircles = 4;
-const nhlines = 4;
-const nvlines = 4;
-const nlines = 0;
+const nx = 3;
+const ny = 3;
+const nz = 5;
 
-const xgrid = [...new Array(nx).keys()].map( j=>Math.floor(100*j/(nx-1))/100 );
-const ygrid = [...new Array(ny).keys()].map( j=>Math.floor(100*j/(ny-1))/100 );
+//const xgrid = [...new Array(nx).keys()].map( j=>Math.floor(100*j/(nx-1))/100 );
+//const ygrid = [...new Array(ny).keys()].map( j=>Math.floor(100*j/(ny-1))/100 );
 //const ygrid = [...new Array(n).keys()].map(j=>tools.randominteger(0,100)/100).sort( (a,b) => { return a - b } );
-
+const xgrid = [...new Array(nx).keys()].map( x=>0.5 );
+const ygrid = [...new Array(ny).keys()].map( y=>0.5 );
+console.log(`inputMill:xgrid=${JSON.stringify(xgrid)}`);
 
 const chords = require("./rawChords.js");
 const sounddata = require("./rawSoundFiles.js");
 //{id: "accordion", keywords:"accordion", file: "accordion.mp3", duration:17.820000, nchannels:2, rate:44100, type:"mp3", bitrate:16},
 const pianosolo = sounddata.filter(f=>f.id==="piano1").map(f=> {
-	return [f.id,1,chords[9]]
+	return [f.id,1,chords[4]]
+});  
+const pianosolo2 = sounddata.filter(f=>f.id==="piano1").map(f=> {
+	return [f.id,1,chords[1]]
 });  
 const score = [
 	{gain:0.4,padmin:0,padmax:200,list:pianosolo},
 	{gain:0.4,padmin:0,padmax:100,list:pianosolo},
+	{gain:0.4,padmin:10,padmax:400,list:pianosolo2},
 ];
 let soundids = [];
 const sounds = score.reduce( (acc,part) => {
@@ -66,13 +67,12 @@ const sounds = score.reduce( (acc,part) => {
 },[]);
 
 const input = {
-	duration: 1, //minutes
+	duration: 2, //minutes
 	fps: 24,
 	chords, sounds,
 	score,
 	nx, ny, nz,
 	xgrid, ygrid,
-	nrects, ncircles, nlines, nhlines, nvlines,
 	pigments, colorsets, rawcolorsets,
 	colors, spicecolors, allcolors,
 	bookunits: "in",

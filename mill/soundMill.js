@@ -92,7 +92,8 @@ const reverbstr = `reverb 100 50 50`;
 //https://digitalcardboard.com/blog/2009/08/25/the-sox-of-silence/comment-page-2/
 //const silencestr = `silence 1 0.01 0.05% reverse silence 1 1.5 0.05% reverse`;
 //const silencestr = `reverse silence 1 4.5 0.015% reverse`;
-const silencestr = `reverse silence 1 0.25 0.015% reverse`;
+//const silencestr = `reverse silence 1 0.25 0.015% reverse`;
+const silencestr = `reverse silence 1 0.48 0.014% reverse`;
 //const silencestr = `-l 1 0.1 1% -1 2.40 1%`;
 const echos = () => {
 	//gain-in gain-out <delay decay>
