@@ -13,6 +13,8 @@ mv rawPoemsList.js poemTextLists.js
 mkdir data/mill$dt
 mkdir data/mill$dt/css
 cp buildMill.sh data/mill$dt/buildMill.sh
+cp createTextLists.js data/mill$dt/createTextLists.js
+cp inputMill.js data/mill$dt/inputMill.js
 cp input.js data/mill$dt/input.js
 cp pigments.js data/mill$dt/pigments.js
 cp tools.js data/mill$dt/tools.js

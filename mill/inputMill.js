@@ -17,43 +17,107 @@ const spicecolors = [pigments.warmlightwhite, pigments.warmlightwhite, pigments.
 const colors = colorsets.warmbw; 
 //const allcolors = [pigments.warmlightwhite,pigments.warmblack,pigments.yellow,pigments.warmlightwhite,pigments.warmlightwhite,pigments.warmblack,pigments.warmlightwhite,pigments.warmblack];
 const colorweights = [
-	[pigments.warmlightwhite,9],
-	[pigments.warmblack,0],
-	[pigments.warmgray,2],
-	[pigments.warmlightgray,6],
-	[pigments.red,0],
+	[pigments.warmlightwhite,8],
+	[pigments.warmwhite,0],
+	[pigments.warmblack,1],
+	[pigments.warmgray,0],
+	[pigments.gray,4],
+	[pigments.warmlightgray,0],
+	[pigments.red,1],
 	[pigments.yellow,1],
 	[pigments.blue,0],
 ];
+const p1 = tools.reifyWeightedArray([
+	[pigments.warmlightwhite,1],
+	[pigments.warmblack,6],
+	[pigments.gray,0],
+	[pigments.red,0],
+]);
+const p2 = tools.reifyWeightedArray([
+	[pigments.warmlightwhite,3],
+	[pigments.warmblack,4],
+	[pigments.gray,0],
+	[pigments.red,0],
+]);
+const p3 = tools.reifyWeightedArray([
+	[pigments.warmlightwhite,5],
+	[pigments.warmblack,2],
+	[pigments.gray,0],
+	[pigments.red,0],
+]);
+const p4 = tools.reifyWeightedArray([
+	[pigments.warmlightwhite,6],
+	[pigments.warmblack,1],
+	[pigments.gray,0],
+	[pigments.red,0],
+]);
+/*
+const p1 = tools.reifyWeightedArray([
+	[pigments.warmlightwhite,1],
+	[pigments.warmblack,1],
+	[pigments.gray,8],
+	[pigments.red,1],
+]);
+const p2 = tools.reifyWeightedArray([
+	[pigments.warmlightwhite,3],
+	[pigments.warmblack,1],
+	[pigments.gray,6],
+	[pigments.red,1],
+]);
+const p3 = tools.reifyWeightedArray([
+	[pigments.warmlightwhite,6],
+	[pigments.warmblack,1],
+	[pigments.gray,3],
+	[pigments.red,1],
+]);
+const p4 = tools.reifyWeightedArray([
+	[pigments.warmlightwhite,8],
+	[pigments.warmblack,1],
+	[pigments.gray,1],
+	[pigments.red,1],
+]);
+*/
+const pigmentsets = { p1,p2,p3,p4 }; 
 
 const allcolors = colorweights.flatMap(wx=>{
 	return [...new Array(wx[1]).keys()].map( w=>wx[0] );
 });
 
-const nx = 3;
-const ny = 3;
-const nz = 5;
+const nx = 5;
+const ny = 5;
+//nz = nlayers
+const nz = 1;
+const nblocks = 5;
 
 //const xgrid = [...new Array(nx).keys()].map( j=>Math.floor(100*j/(nx-1))/100 );
 //const ygrid = [...new Array(ny).keys()].map( j=>Math.floor(100*j/(ny-1))/100 );
 //const ygrid = [...new Array(n).keys()].map(j=>tools.randominteger(0,100)/100).sort( (a,b) => { return a - b } );
-const xgrid = [...new Array(nx).keys()].map( x=>0.5 );
-const ygrid = [...new Array(ny).keys()].map( y=>0.5 );
+//const xgrid = [...new Array(nx).keys()].map( x=>0.5 );
+//const ygrid = [...new Array(ny).keys()].map( y=>0.5 );
+//for quiltfactory
+const xgrid = [...new Array(nx*nblocks).keys()].map( j=>Math.floor(100*j/(nx*nblocks))/100 );
+const ygrid = [...new Array(ny*nblocks).keys()].map( j=>Math.floor(100*j/(ny*nblocks))/100 );
 console.log(`inputMill:xgrid=${JSON.stringify(xgrid)}`);
 
 const chords = require("./rawChords.js");
 const sounddata = require("./rawSoundFiles.js");
 //{id: "accordion", keywords:"accordion", file: "accordion.mp3", duration:17.820000, nchannels:2, rate:44100, type:"mp3", bitrate:16},
-const pianosolo = sounddata.filter(f=>f.id==="piano1").map(f=> {
+const stringsnotpluck = sounddata.filter(f=>f.keywords.includes("strings") && !f.keywords.includes("pluck")).map(f=> {
+	return [f.id,1,chords[0]]
+});  
+const stringspluck = sounddata.filter(f=>f.keywords.includes("strings") && f.keywords.includes("pluck")).map(f=> {
+	return [f.id,1,chords[0]]
+});  
+const strings = sounddata.filter(f=>f.keywords.includes("strings")).map(f=> {
+	return [f.id,1,chords[0]]
+});  
+const bowedmetal = sounddata.filter(f=>f.keywords.includes("bowedmetal")).map(f=> {
 	return [f.id,1,chords[4]]
 });  
-const pianosolo2 = sounddata.filter(f=>f.id==="piano1").map(f=> {
-	return [f.id,1,chords[1]]
-});  
 const score = [
-	{gain:0.4,padmin:0,padmax:200,list:pianosolo},
-	{gain:0.4,padmin:0,padmax:100,list:pianosolo},
-	{gain:0.4,padmin:10,padmax:400,list:pianosolo2},
+	{gain:0.4,padmin:20,padmax:300,nthreads:1,list:stringspluck},
+	{gain:0.4,padmin:10,padmax:300,nthreads:2,list:stringspluck},
+	{gain:0.3,padmin:0,padmax:20,delay:0.4,duration:0.2,nthreads:2,list:bowedmetal},
 ];
 let soundids = [];
 const sounds = score.reduce( (acc,part) => {
@@ -67,13 +131,14 @@ const sounds = score.reduce( (acc,part) => {
 },[]);
 
 const input = {
-	duration: 2, //minutes
+	duration: 1.8, //minutes
 	fps: 24,
 	chords, sounds,
 	score,
-	nx, ny, nz,
+	nx, ny, nz,nblocks,
 	xgrid, ygrid,
 	pigments, colorsets, rawcolorsets,
+	pigmentsets,
 	colors, spicecolors, allcolors,
 	bookunits: "in",
 	bookwidth: 8,

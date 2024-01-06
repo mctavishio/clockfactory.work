@@ -120,7 +120,9 @@ let tools = {
 	let pdt = {};
 	Object.keys(p1).forEach(k=> {
 		if(isNaN(p1[k])) {
-			pdt[k] = p1[k];
+			//pdt[k] = p1[k];
+			//pdt[k] = t%5===0 ? p2[k] : p1[k];
+			pdt[k] = tools.randominteger(0,10)<3 ? p2[k] : p1[k];
 		}
 		else {
 			pdt[k] = (100*p1[k] + 100*(p2[k]-p1[k])*dt)/100;

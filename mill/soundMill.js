@@ -161,6 +161,7 @@ score.forEach( (line,l) => {
 		//with echo & 
 		//with no echo
 		threadstr = threadstr + `
+echo ${filestr}
 sox ${filestr} line_${l.toString().padStart(3, "0")}_thread_${j.toString().padStart(3, "0")}_echo.mp3 echos ${echos()} norm -2;
 sox ${filestr} line_${l.toString().padStart(3, "0")}_thread_${j.toString().padStart(3, "0")}.mp3 norm -2; `;
 		return threadstr;
