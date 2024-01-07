@@ -37,6 +37,28 @@ let tools = {
 	  }
 	  return array;
 	},
+	rotate: matrix => {
+		return matrix.map((row, i) =>
+			row.map((val, j) => matrix[matrix.length - 1 - j][i])
+		);
+	},
+	rotatenxnMatrix(array) {
+		return array[0].map((_, colIndex) => array.map(row => row[colIndex]));
+	},
+	rotateClockwise(a) {
+		var n=a.length;
+		for (var i=0; i<n/2; i++) {
+			for (var j=i; j<n-i-1; j++) {
+				var tmp=a[i][j];
+				a[i][j]=a[n-j-1][i];
+				a[n-j-1][i]=a[n-i-1][n-j-1];
+				a[n-i-1][n-j-1]=a[j][n-i-1];
+				a[j][n-i-1]=tmp;
+			}
+		}
+		console.log(`a=${JSON.stringify(a)}`);
+		return a;
+	},
 	hexToRGB: h => {
 		let r = 0, g = 0, b = 0;
 		// 3 digits
@@ -116,19 +138,19 @@ let tools = {
 		);
 	},
 	tween: (p1,p2,t,d) => {
-	let dt = (100*t/d)/100;
-	let pdt = {};
-	Object.keys(p1).forEach(k=> {
-		if(isNaN(p1[k])) {
-			//pdt[k] = p1[k];
-			//pdt[k] = t%5===0 ? p2[k] : p1[k];
-			pdt[k] = tools.randominteger(0,10)<3 ? p2[k] : p1[k];
-		}
-		else {
-			pdt[k] = (100*p1[k] + 100*(p2[k]-p1[k])*dt)/100;
-		}
-	});
-	return pdt;
+		let dt = (100*t/d)/100;
+		let pdt = {};
+		Object.keys(p1).forEach(k=> {
+			if(isNaN(p1[k])) {
+				//pdt[k] = p1[k];
+				//pdt[k] = t%5===0 ? p2[k] : p1[k];
+				pdt[k] = tools.randominteger(0,10)<1 ? p2[k] : p1[k];
+			}
+			else {
+				pdt[k] = (100*p1[k] + 100*(p2[k]-p1[k])*dt)/100;
+			}
+		});
+		return pdt;
 	},
 	//linear tween
 	//for more see: https://github.com/danro/jquery-easing/blob/master/jquery.easing.js

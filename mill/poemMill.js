@@ -43,6 +43,16 @@ let timestamp = dt.getTime();
 let datetime = dt.toDateString();
 
 const canvas = {width:svgwidth,height:svgheight,min:Math.min(svgwidth,svgheight),max:Math.max(svgwidth,svgheight)};
+const obj2html = obj => {
+	let objstr = Object.keys(obj).reduce( (acc,key) => {
+		if(obj[key]>0) {
+			acc = acc + `<li>color ${key} ::: ${obj[key]} squares</li>`;
+		}
+		return acc;
+	}, `<ul class="stanza">`) + `</ul>`;
+	//console.log(`objstr=${objstr}`);
+	return objstr;
+};
 const textLists2html = textLists => {
 	return textLists.reduce( (acc,list) => {
 		acc = acc + `
@@ -68,9 +78,10 @@ let poemsobj = [...new Array(nticks).keys()].map( j => {
 	let poem = {
 		id: `${(j+1).toString().padStart(2, '0')}`,
 		title: `${title}`,
-		text: textLists2html(textLists),
+		text: obj2html(B.pigmentcount[j]) + textLists2html(textLists),
 	};
-	let jd = (j===0 || j===nticks-1) ? tools.randominteger(1,nticks-2) : j; 
+	//let jd = (j===0 || j===nticks-1) ? tools.randominteger(1,nticks-2) : j; 
+	let jd=j;
 	let elementdraw = B.elements.map( layer => {
 		return layer.map( el => {
 			//console.log(el.role);

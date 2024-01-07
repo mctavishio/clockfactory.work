@@ -84,10 +84,9 @@ node filmMill
 echo done running filmMill
 prince -s css/print.css film.html -o film.pdf
 echo done making film book
-
-#sed "s/notext/withtext/" film.html > filmtext.html
-#prince -s css/print.css filmtext.html -o filmtext.pdf
-#echo done making word film book
+sed "s/notext/withtext/" film.html > filmtext.html
+prince -s css/print.css filmtext.html -o filmtext.pdf
+echo done making word film book
 
 # https://www.princexml.com/doc/command-line/
 #prince -s css/print.css film.html --raster-dpi=300 --raster-output=frame%04d.png;

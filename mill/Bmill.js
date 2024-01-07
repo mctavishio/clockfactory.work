@@ -30,6 +30,7 @@ const m = (nx*ny + nx + ny) * nz;
 const n = nmin;
 const dx = Math.round(100/(nx*nblocks))/100, dy = Math.round(100/(ny*nblocks))/100;
 const blockdx = Math.round(100/(nblocks))/100, blockdy = Math.round(100/(nblocks))/100;
+console.log(`dx=${dx} blockdx=${blockdx}`);
 //console.log(`colorseq = ${JSON.stringify(colorseq)}`);
 const xgrid = input.xgrid;
 const ygrid = input.ygrid;
@@ -39,8 +40,6 @@ console.log(`xgrid=${JSON.stringify(xgrid)}`);
 
 let pigmentsets = input.pigmentsets;
 
-
-
 //x,y,e,z
 let elements = [];
 elements[0] = [
@@ -49,21 +48,29 @@ elements[0] = [
 ];
 let count=0;
 [...new Array(nz).keys()].map(z=>z+1).forEach( z=> {
+	let e = -1;
 	elements[z] = [];
 	[...new Array(nblocks).keys()].forEach( blockx => {
 		[...new Array(nblocks).keys()].forEach( blocky => {
 			[...new Array(nx).keys()].forEach( x=> {
 				[...new Array(ny).keys()].forEach( y=> {
-					let e = -1;
 					//let cx = xgrid[block*nx+x];
 					//let cy = xgrid[block*ny+y];
-					let cx = xgrid[blockx*nx+x];
-					let cy = xgrid[blocky*ny+y];
+					//let cx = xgrid[blockx*nx+x];
+					//let cy = ygrid[blocky*ny+y];
+					let cx = blockdx*blockx + x*dx;
+					let cy = blockdy*blocky + y*dy;
 					++e;++count;
-					elements[z].push({b:[],tag:"rect", role:"rect", blockx,blocky,x,y,z,e,n:count, cx, cy,w:dx,h:dy, so:0.0, fo:1.0, strokecolor:pigments.warmlightwhite, fillcolor:pigments.warmlightwhite});
+					elements[z].push({b:[],tag:"rect", role:"rect", blockx,blocky,x,y,z,e,n:count,cx,cy,w:dx,h:dy,so:0.0,fo:1.0,strokecolor:pigments.warmlightwhite, fillcolor:pigments.gray});
 				});
 			});
 		});
+	/*	
+		++e;++count;
+		elements[z].push({b:[],tag:"line", role:"vline", blockx,blocky:blockx,x:blockx,y:blockx,z,e,n:count,cx:blockx*nx*dx,cy:blockx*ny*dy,w:dx,h:dy, so:1, fo:0,sd:0.6, sf:0,sw:0.01,strokecolor:pigments.warmblack, fillcolor:pigments.warmlightwhite});
+		++e;++count;
+		elements[z].push({b:[],tag:"line", role:"hline", blockx,blocky:blockx,x:blockx,y:blockx,z,e,n:count,cx:blockx*nx*dx,cy:blockx*ny*dy,w:dx,h:dy, so:1, fo:0,sd:0.6, sf:0, sw:0.01,strokecolor:pigments.warmblack, fillcolor:pigments.warmlightwhite});
+	*/	
 	});
 });
 
@@ -72,6 +79,7 @@ let count=0;
 let B = {
 	nticks: nticks,
 	fps: fps,
+	pigmentcount: [],
 	elements: elements,
 };
 let Bfilm = {
@@ -115,58 +123,35 @@ const ischange = () => { return tools.randominteger(0,100) > -1 }
 			acc[color] = 0;
 			return acc;
 		}, {});
-		let blockpigments = [...Array(nblocks).keys()].map( r => {
-			let row = [...Array(ny).keys()].map( c => {
-				let x = "p1";
-				if( (c > 0 && c < (ny-1)) && (r > 0 && r < (nx-1)) ) { 
-					x = "p2";
-				}
-				else if(c===0 && r===0) {
-					x = "p4";
-				}
-				else if(c===ny-1 && r===nx-1) {
-					x = "p3";
-				}
-				else if((c===0||c===ny-1) && (r===0||r===nx)) {
-					x = "p3";
-				}
-				let f = () => {
-					let color = pigmentsets[x][tools.randominteger(0,pigmentsets[x].length)]; 
-					++pigmentcount[color];
+		let blockpigments = [...Array(nblocks).keys()].map( block => {
+			return [...Array(nx).keys()].map( x => {
+				return [...Array(ny).keys()].map( y => {
+					let pigmentset = "p1";
+					if( x===0 && y==0 ) {pigmentset = "p4";} 
+					else if( (x===0 || x===nx-1) && (y===0 || y===ny-1) ) { pigmentset = "p3";} 
+					else if( (x===1 || x===nx-2) && (y===1 || y===ny-2) ) { pigmentset = "p2";} 
+					let color = pigmentsets[pigmentset][tools.randominteger(0,pigmentsets[pigmentset].length)]; 
+					pigmentcount[color] = pigmentcount[color] +  nblocks;
 					return color;
-				}
-				return f;
+				});
 			});
-			return row;
 		});
-		let blocks = [...Array(nblocks).keys()].map( b => {
-			let block = [...Array(nx).keys()].map( r => {
-				return [...Array(ny).keys()].map( c => blockpigments[r][c]() )
-			});
-			return block;
-		});
-		let blocksrotations = blocks.map( b => {
-			let rot1 = b.map( (row,r) => {
-				return row.map( (col,c) => {
-					return b[c][(nx-r-1)];
-				});
-			});
-			let rot2 = b.map( (row,r) => {
-				return row.map( (col,c) => {
-					return b[(nx-r-1)][(ny-c-1)];
-				});
-			});
-			let rot3 = b.map( (row,r) => {
-				return row.map( (col,c) => {
-					return b[(ny-c-1)][r];
-				});
-			});
-			//return [b,rot3,rot2,rot1,b];
-			return [b,rot2,b,rot2,b];
+		B.pigmentcount.push(pigmentcount);
+		console.log(`pigmentcount = ${JSON.stringify(pigmentcount)}`);
+		console.log(`blockpigments=${JSON.stringify(blockpigments,null,"\t")}`);
+		let blocksrotations = blockpigments.map( block => {
+			//let rot1 = tools.rotateClockwise(block);
+			let rot1 = tools.rotatenxnMatrix(block);
+			//let rot1 = tools.rotate(block);
+			let rot2 = tools.rotatenxnMatrix(rot1); 
+			let rot3 = tools.rotatenxnMatrix(rot2); 
+			//return [block,rot3,rot2,rot1,block];
+			return [block,rot1,rot2,rot3,block];
 		});
 		B.elements[z].forEach( (el,j) => {
 			let bt = [];
-			let fillcolor = blocksrotations[el.blockx][el.blocky][el.x][el.y]; 
+			let fillcolor = blocksrotations[el.blocky][el.blockx][el.x][el.y]; 
+			//let fillcolor = blockpigments[el.blocky][el.x][el.y]; 
 			if( t===0 || ischange() || t===nticks-1 ) {
 				bt = { fillcolor };
 			}
@@ -175,6 +160,7 @@ const ischange = () => { return tools.randominteger(0,100) > -1 }
 		});
 	});
 	B.elements[z].forEach( (el,j) => {
+		/*
 		[...new Array(Math.floor(nticks/5)).keys()].forEach(x=> {
 			let t = tools.randominteger(1,nticks-2);
 			el.b[t] = tools.tween(el.b[t-1],el.b[t+1],1,2);
@@ -191,6 +177,7 @@ const ischange = () => { return tools.randominteger(0,100) > -1 }
 			el.b[t+1] = tools.tween(el.b[t-1],el.b[t+3],2,4);
 			el.b[t+2] = tools.tween(el.b[t-1],el.b[t+3],3,4);
 		});
+		*/
 		//console.log(`el.b[0] = ${JSON.stringify(el.b[0])}`);
 		//console.log(`el.b[nticks-1] = ${JSON.stringify(el.b[nticks-1])}`);
 		Bfilm.elements[z][j].b = [...new Array(nticks).keys()].flatMap( t => { 
