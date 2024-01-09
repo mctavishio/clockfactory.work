@@ -1,16 +1,15 @@
 #codeart #newmediaart #abstractart #creativecoding 
 #algorithmicart, #assemblage #framebyframe 
-#motiongraphics #ffmpeg #soxaudio #w3c #nodejs 
+#ffmpeg #soxaudio #w3c #nodejs 
 #html #css #svg #computerart #creativecodeart
 #timebased #lgbqtia2s+ #animation #handcoded #text
 the book:
-https://storage.googleapis.com/clockfactory/mill20231231125254/printbook.pdf
-
+https://storage.googleapis.com/clockfactory/mill20240108140017/printbook.pdf
 
 for youtube
 codeart,newmediaart,abstractart,creativecoding, 
 assemblage,framebyframe, algorithmicart,
-motiongraphics,ffmpeg,soxaudio,w3c,nodejs,
+ffmpeg,soxaudio,w3c,nodejs,
 html,css,svg,computerart,creativecodeart,
 timebased,lgbqtia2s+,animation,handcoded,text
 

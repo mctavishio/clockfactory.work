@@ -115,10 +115,13 @@ echo done making film book
 prince -s css/print.css film.html --raster-dpi=150 --raster-output=frame%04d.png;
 rm frame0000.png
 rm frame0001.png
+rm frame0002.png
+rm frame0003.png
 cp frame0048.png poster0000_$dt.png
 cp frame0298.png poster0001_$dt.png
 cp frame0418.png poster0002_$dt.png
-cp frame0818.png poster0003_$dt.png
+cp frame0r618.png poster0003_$dt.png
+cp frame0818.png poster0004_$dt.png
 ffmpeg -framerate 24 -i frame%04d.png -c:v libx264 -r 24 -pix_fmt yuv420p film.mp4
 rm frame*.png
 echo done making film.mp4

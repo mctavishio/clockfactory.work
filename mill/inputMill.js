@@ -10,6 +10,52 @@ let dt = new Date();
 let timestamp = dt.getTime();
 let datetime = dt.toDateString();
 
+const title = "quilt factory";
+const subtitle = datetime;
+const description = "algorithmic quilt patterns";
+const rooturl = "https://quiltfactory.work";
+const authorurl = "https://mctavish.work/index.html";
+const author= "mctavish";
+const copyright = "Copyright ©2024 mctavish<br/>";
+const isbn = "ISBN: 00000<br/>";
+const publisher = ". . .";
+
+let filmobj = {
+	title, subtitle, description, rooturl,
+	authorurl, author, copyright,
+	isbn, publisher,
+	sections: [],
+	poemids: [],
+	bookmargin: 0,
+	bookguttermargin: 0,
+	bleed: 0,
+	bookunits: "in",
+	bookwidth: 8,
+	bookheight: 8,
+	bookmargin: 1,
+	bookguttermargin: 1.2,
+	bleed: 0.125,
+	pixelsperunit: 72,
+	captionheight: 1,
+	cssstyles: "", 
+};
+let bookobj = {
+	title, subtitle, description, rooturl,
+	authorurl, author, copyright,
+	isbn, publisher,
+	sections: [],
+	poemids: [],
+	bookunits: "in",
+	bookwidth: 8,
+	bookheight: 8,
+	bookmargin: 1,
+	bookguttermargin: 1.2,
+	bleed: 0.125,
+	pixelsperunit: 72,
+	captionheight: 1,
+	cssstyles: "", 
+};
+
 const inputfile = `./input.js`;
 
 const fps = 24;
@@ -27,32 +73,6 @@ const colorweights = [
 	[pigments.yellow,1],
 	[pigments.blue,0],
 ];
-/*
-const p1 = tools.reifyWeightedArray([
-	[pigments.warmlightwhite,1],
-	[pigments.warmblack,0],
-	[pigments.gray,6],
-	[pigments.red,0],
-]);
-const p2 = tools.reifyWeightedArray([
-	[pigments.warmlightwhite,3],
-	[pigments.warmblack,0],
-	[pigments.gray,4],
-	[pigments.red,0],
-]);
-const p3 = tools.reifyWeightedArray([
-	[pigments.warmlightwhite,5],
-	[pigments.warmblack,0],
-	[pigments.gray,2],
-	[pigments.red,0],
-]);
-const p4 = tools.reifyWeightedArray([
-	[pigments.warmlightwhite,6],
-	[pigments.warmblack,0],
-	[pigments.gray,1],
-	[pigments.red,0],
-]);
-*/
 const p1 = tools.reifyWeightedArray([
 	[pigments.warmlightwhite,8],
 	[pigments.warmblack,0],
@@ -81,7 +101,122 @@ const p4 = tools.reifyWeightedArray([
 	[pigments.blue,0],
 	[pigments.red,2],
 ]);
-
+/*
+const p1 = tools.reifyWeightedArray([
+	[pigments.warmlightwhite,1],
+	[pigments.warmblack,0],
+	[pigments.gray,6],
+	[pigments.red,0],
+]);
+const p2 = tools.reifyWeightedArray([
+	[pigments.warmlightwhite,3],
+	[pigments.warmblack,0],
+	[pigments.gray,4],
+	[pigments.red,0],
+]);
+const p3 = tools.reifyWeightedArray([
+	[pigments.warmlightwhite,5],
+	[pigments.warmblack,0],
+	[pigments.gray,2],
+	[pigments.red,0],
+]);
+const p4 = tools.reifyWeightedArray([
+	[pigments.warmlightwhite,6],
+	[pigments.warmblack,0],
+	[pigments.gray,1],
+	[pigments.red,0],
+]);
+*/
+/*
+const p1 = tools.reifyWeightedArray([
+	[pigments.warmlightwhite,8],
+	[pigments.warmblack,0],
+	[pigments.gray,2],
+	[pigments.blue,0],
+	[pigments.red,0],
+]);
+const p2 = tools.reifyWeightedArray([
+	[pigments.warmlightwhite,6],
+	[pigments.warmblack,0],
+	[pigments.gray,4],
+	[pigments.blue,0],
+	[pigments.red,1],
+]);
+const p3 = tools.reifyWeightedArray([
+	[pigments.warmlightwhite,2],
+	[pigments.warmblack,2],
+	[pigments.gray,4],
+	[pigments.blue,0],
+	[pigments.red,1],
+]);
+const p4 = tools.reifyWeightedArray([
+	[pigments.warmlightwhite,0],
+	[pigments.warmblack,1],
+	[pigments.gray,2],
+	[pigments.blue,0],
+	[pigments.red,2],
+]);
+*/
+/*
+const p1 = tools.reifyWeightedArray([
+	[pigments.warmlightwhite,1],
+	[pigments.warmblack,1],
+	[pigments.gray,6],
+	[pigments.yellow,0],
+	[pigments.red,0],
+]);
+const p2 = tools.reifyWeightedArray([
+	[pigments.warmlightwhite,3],
+	[pigments.warmblack,1],
+	[pigments.gray,4],
+	[pigments.yellow,1],
+	[pigments.red,0],
+]);
+const p3 = tools.reifyWeightedArray([
+	[pigments.warmlightwhite,5],
+	[pigments.warmblack,0],
+	[pigments.gray,3],
+	[pigments.yellow,1],
+	[pigments.red,0],
+]);
+const p4 = tools.reifyWeightedArray([
+	[pigments.warmlightwhite,6],
+	[pigments.warmblack,0],
+	[pigments.gray,1],
+	[pigments.yellow,0],
+	[pigments.red,0],
+]);
+*/
+/*
+const p1 = tools.reifyWeightedArray([
+	[pigments.warmlightwhite,8],
+	[pigments.warmblack,0],
+	[pigments.gray,4],
+	[pigments.blue,0],
+	[pigments.red,0],
+]);
+const p2 = tools.reifyWeightedArray([
+	[pigments.warmlightwhite,4],
+	[pigments.warmblack,2],
+	[pigments.gray,4],
+	[pigments.blue,0],
+	[pigments.red,1],
+]);
+const p3 = tools.reifyWeightedArray([
+	[pigments.warmlightwhite,1],
+	[pigments.warmblack,4],
+	[pigments.gray,6],
+	[pigments.blue,0],
+	[pigments.red,1],
+]);
+const p4 = tools.reifyWeightedArray([
+	[pigments.warmlightwhite,0],
+	[pigments.warmblack,2],
+	[pigments.gray,2],
+	[pigments.blue,0],
+	[pigments.red,4],
+]);
+*/
 /*
 const p1 = tools.reifyWeightedArray([
 	[pigments.warmlightwhite,1],
@@ -139,11 +274,11 @@ const stringsnotpluck = sounddata.filter(f=>f.keywords.includes("strings") && !f
 const stringspluck = sounddata.filter(f=>f.keywords.includes("strings") && f.keywords.includes("pluck")).map(f=> {
 	return [f.id,1,chords[0]]
 });  
-const stringspluck2 = sounddata.filter(f=>f.keywords.includes("strings") && f.keywords.includes("pluck")).map(f=> {
+const stringspluck2 = sounddata.filter(f=>f.keywords.includes("strings") && f.keywords.includes("pluck") && !f.keywords.includes("kantele")).map(f=> {
 	return [f.id,1,chords[9]]
 });  
-const stringspluck3 = sounddata.filter(f=>f.keywords.includes("strings") && f.keywords.includes("pluck")).map(f=> {
-	return [f.id,1,chords[11]]
+const stringspluck3 = sounddata.filter(f=>f.keywords.includes("strings") && f.keywords.includes("pluck")&& !f.keywords.includes("kantele")).map(f=> {
+	return [f.id,1,chords[0]]
 });  
 const strings = sounddata.filter(f=>f.keywords.includes("strings")).map(f=> {
 	return [f.id,1,chords[0]]
@@ -165,6 +300,10 @@ const score = [
 	{gain:0.4,padmin:10,padmax:300,nthreads:2,list:birds},
 	{gain:0.4,padmin:0,padmax:100,nthreads:2,list:afterring2},
 	{gain:0.4,padmin:0,padmax:20,delay:0.4,duration:0.6,nthreads:2,list:birds},
+	//{gain:0.4,padmin:20,padmax:300,nthreads:2,list:afterring},
+	//{gain:0.4,padmin:10,padmax:300,nthreads:3,list:afterring},
+	//{gain:0.4,padmin:0,padmax:100,nthreads:2,list:afterring2},
+	//{gain:0.4,padmin:0,padmax:20,delay:0.4,duration:0.2,nthreads:2,list:birds},
 ];
 let soundids = [];
 const sounds = score.reduce( (acc,part) => {
@@ -201,6 +340,7 @@ const input = {
 	nlines: 4,
 	nchars: 48,
 	weights: [0,18,22,22,30,24,18,16,14,12,6,4,3,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+	bookobj,filmobj,
 };
 
 fs.writeFileSync("inSoundFiles.js", JSON.stringify(sounds,null,"\t"), (err) => {

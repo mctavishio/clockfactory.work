@@ -170,26 +170,16 @@ let framesobj = [...new Array(nticks).keys()].flatMap( j => {
 	});
 });
 
-let bookobj = {
-	title: "field notes",
-	subtitle: "blueatlas ::: fieldnotes",
-	description: "the rider passenger repair(*)",
-	rooturl: "https://bluerider.work",
-	file: "indexbook",
-	authorurl: "https://mctavish.work/index.html",
-	author: "mctavish",
-	copyright: "Copyright ©2021 mctavish<br/>",
-	isbn: "ISBN: 00000<br/>",
-	publisher: "mctavish",
-	sections: [
-		{ 
-			id: "section1",
-			title: "the repair(*)",
-			inscription: "it was like this every morning ...",
-			cssclasses: ["pagestartnumbers", "booksection"],
-			poems: [...new Array(nticks).keys()].map( j => { return poemsobj[j].id }), 
-		},
-		/*
+let bookobj = input.bookobj;
+bookobj.sections = [
+	{ 
+		id: "section1",
+		title: "the repair(*)",
+		inscription: "five different 5x5 blocks each rotated & repeated five times",
+		cssclasses: ["pagestartnumbers", "booksection"],
+		poems: [...new Array(nticks).keys()].map( j => { return poemsobj[j].id }), 
+	},
+	/*
 		{ 
 			id: "section1",
 			title: "the repair(*)",
@@ -217,45 +207,32 @@ let bookobj = {
 			poems: [...new Array(nticks).keys()].filter( j => j > 180 && j < 241 ).map( j => { return poems[j%poems.length].id }), 
 		},
 		*/
-	],
-	poemids: [...new Array(nticks).keys()].map( j => { return poemsobj[j].id }), 
-};
+];
+bookobj.poemids = [...new Array(nticks).keys()].map( j => { return poemsobj[j].id }); 
 
-let filmobj = {
-	title: "field notes",
-	subtitle: "blueatlas ::: fieldnotes",
-	description: "the rider passenger repair(*)",
-	rooturl: "https://bluerider.work",
-	file: "indexbook",
-	authorurl: "https://mctavish.work/index.html",
-	author: "mctavish",
-	copyright: "Copyright ©2021 mctavish<br/>",
-	isbn: "ISBN: 00000<br/>",
-	publisher: "mctavish",
-	sections: [
-		{ 
-			id: "title",
-			title: "field notes",
-			cssclasses: ["pagenonumbers", "notoc", "booktitle", "booksection"],
-		},
-		{ 
-			id: "section1",
-			title: "the repair(*)",
-			inscription: "it was like this every morning ...",
-			cssclasses: ["pagestartnumbers", "booksection"],
-			poems: [...new Array(framesobj.length).keys()].map( j => { return framesobj[j].id }), 
-		},
-	],
-	poemids: [...new Array(nticks*fps).keys()].map( j => { return framesobj[j].id }), 
-};
 
+let filmobj = input.filmobj;
+filmobj.sections = [
+	{ 
+		id: "title",
+		title: "field notes",
+		cssclasses: ["pagenonumbers", "notoc", "booktitle", "booksection"],
+	},
+	{ 
+		id: "section1",
+		title: "the repair(*)",
+		inscription: "it was like this every morning ...",
+		cssclasses: ["pagestartnumbers", "booksection"],
+		poems: [...new Array(framesobj.length).keys()].map( j => { return framesobj[j].id }), 
+	},
+];
+filmobj.poemids= [...new Array(nticks*fps).keys()].map( j => { return framesobj[j].id }); 
+/*
 Object.keys(input).forEach( key => {
 	bookobj[key] = input[key];
 	filmobj[key] = input[key];
 });
-filmobj["bookmargin"] = 0;
-filmobj["bookguttermargin"] = 0;
-filmobj["bleed"] = 0;
+*/
 
 let bookstr = `let book =
 	${JSON.stringify(bookobj, null, "\t")};
