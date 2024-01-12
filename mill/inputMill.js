@@ -73,6 +73,7 @@ const colorweights = [
 	[pigments.yellow,1],
 	[pigments.blue,0],
 ];
+
 const p1 = tools.reifyWeightedArray([
 	[pigments.warmlightwhite,8],
 	[pigments.warmblack,0],
@@ -82,51 +83,26 @@ const p1 = tools.reifyWeightedArray([
 ]);
 const p2 = tools.reifyWeightedArray([
 	[pigments.warmlightwhite,4],
-	[pigments.warmblack,1],
+	[pigments.warmblack,3],
 	[pigments.gray,4],
 	[pigments.blue,0],
 	[pigments.red,0],
 ]);
 const p3 = tools.reifyWeightedArray([
 	[pigments.warmlightwhite,1],
-	[pigments.warmblack,2],
+	[pigments.warmblack,5],
 	[pigments.gray,6],
 	[pigments.blue,0],
-	[pigments.red,1],
+	[pigments.yellow,1],
 ]);
 const p4 = tools.reifyWeightedArray([
 	[pigments.warmlightwhite,0],
-	[pigments.warmblack,1],
+	[pigments.warmblack,4],
 	[pigments.gray,2],
 	[pigments.blue,0],
 	[pigments.red,2],
 ]);
-/*
-const p1 = tools.reifyWeightedArray([
-	[pigments.warmlightwhite,1],
-	[pigments.warmblack,0],
-	[pigments.gray,6],
-	[pigments.red,0],
-]);
-const p2 = tools.reifyWeightedArray([
-	[pigments.warmlightwhite,3],
-	[pigments.warmblack,0],
-	[pigments.gray,4],
-	[pigments.red,0],
-]);
-const p3 = tools.reifyWeightedArray([
-	[pigments.warmlightwhite,5],
-	[pigments.warmblack,0],
-	[pigments.gray,2],
-	[pigments.red,0],
-]);
-const p4 = tools.reifyWeightedArray([
-	[pigments.warmlightwhite,6],
-	[pigments.warmblack,0],
-	[pigments.gray,1],
-	[pigments.red,0],
-]);
-*/
+
 /*
 const p1 = tools.reifyWeightedArray([
 	[pigments.warmlightwhite,8],
@@ -289,17 +265,61 @@ const bowedmetal = sounddata.filter(f=>f.keywords.includes("bowedmetal")).map(f=
 const birds = sounddata.filter(f=>f.keywords.includes("bird")).map(f=> {
 	return [f.id,1,chords[0]]
 });  
+const noise = sounddata.filter(f=>f.keywords.includes("noise")).map(f=> {
+	return [f.id,1,chords[0]]
+});  
+const noise2 = sounddata.filter(f=>f.keywords.includes("noise")).map(f=> {
+	return [f.id,1,chords[9]]
+});  
+const coffepot = sounddata.filter(f=>f.id.includes("coffepot")).map(f=> {
+	return [f.id,1,chords[0]]
+});  
+const pianokeys = sounddata.filter(f=>f.keywords==="piano" && !f.keywords.includes("harp")).map(f=> {
+	return [f.id,1,chords[9]]
+});  
+const pianosolo = sounddata.filter(f=>f.id==="piano1").map(f=> {
+	return [f.id,1,chords[9]]
+});  
+const pianosolonoise = sounddata.filter(f=>f.id==="piano1").map(f=> {
+	return [f.id,1,chords[11]]
+});  
+const brass = sounddata.filter(f=>f.keywords.includes("brass")).map(f=> {
+	return [f.id,1,chords[4]]
+});  
+const brasslong = sounddata.filter(f=>f.keywords.includes("brass") && f.keywords.includes("long")).map(f=> {
+	return [f.id,1,chords[7]]
+});  
+const brassshort = sounddata.filter(f=>f.keywords.includes("brass") && f.keywords.includes("short")).map(f=> {
+	return [f.id,1,chords[7]]
+});  
+const brasslong_ad = sounddata.filter(f=>(f.id.includes("_d3_") || f.id.includes("_a2_")) && f.keywords.includes("brass") && f.keywords.includes("long")).map(f=> {
+	return [f.id,1,chords[0]]
+});  
+const brassshort_ad = sounddata.filter(f=>(f.id.includes("_d3_") || f.id.includes("_a2_")) && f.keywords.includes("brass") && f.keywords.includes("short")).map(f=> {
+	return [f.id,1,chords[0]]
+});  
 const afterring = sounddata.filter(f=>f.keywords.includes("afterring")).map(f=> {
 	return [f.id,1,chords[4]]
 });  
 const afterring2 = sounddata.filter(f=>f.keywords.includes("afterring")).map(f=> {
 	return [f.id,1,chords[9]]
 });
+const strange = sounddata.filter(f=>f.keywords.includes("strange")).map(f=> {
+	return [f.id,1,chords[9]]
+});
 const score = [
-	{gain:0.4,padmin:20,padmax:300,nthreads:2,list:afterring},
-	{gain:0.4,padmin:10,padmax:300,nthreads:2,list:birds},
+	//{gain:0.4,padmin:0,padmax:200,list:pianokeys},
+	//{gain:0.6,padmin:0,padmax:100,nthreads:2,list:pianosolo},
+	//{gain:0.6,padmin:0,padmax:100,nthreads:2,list:pianosolonoise},
+	{gain:0.3,padmin:80,padmax:400,nthreads:2,list:brassshort},
+	{gain:0.3,padmin:80,padmax:400,list:brasslong},
+	{gain:0.3,padmin:80,padmax:400,nthreads:2,list:brasslong},
+	//{gain:0.3,padmin:20,padmax:300,nthreads:2,list:noise},
+	//{gain:0.2,padmin:0,padmax:100,nthreads:2,list:noise2},
+	/*
 	{gain:0.4,padmin:0,padmax:100,nthreads:2,list:afterring2},
-	{gain:0.4,padmin:0,padmax:20,delay:0.4,duration:0.6,nthreads:2,list:birds},
+	{gain:0.4,padmin:0,padmax:20,delay:0.4,duration:0.6,nthreads:2,list:noise},
+	*/
 	//{gain:0.4,padmin:20,padmax:300,nthreads:2,list:afterring},
 	//{gain:0.4,padmin:10,padmax:300,nthreads:3,list:afterring},
 	//{gain:0.4,padmin:0,padmax:100,nthreads:2,list:afterring2},

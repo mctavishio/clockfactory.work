@@ -14,6 +14,8 @@
   --warmlightgray: #656560;
   --white: #ffffff;
   --warmwhite: #fcfbe3;
+  --warmlightwhite:#fdfdf3; /* panatone sort of "P 1-9 C"rgb(253,253,243),hsl(60,71.4%,97.3%),cmyk(0,0,4,1)*/
+  --warmlightwhiteveil: rgba(253,253,243,0.8);
   --richblack: #010203;
   --richgray1: #2a2a2b;
   --richgray2: #4f4f50;
@@ -37,12 +39,12 @@
 }
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/break-before */
 @page {
-  margin: var(--margin);
-  margin-top: 1.2in;
-  size: 5.5in 8.5in;
-  size: A5 landscape;
-  size: A5;
-  size: var(--width) var(--height);
+	margin: var(--margin);
+	margin-top: 1.2in;
+	size: 5.5in 8.5in;
+	size: A5 landscape;
+	size: A5;
+	size: var(--width) var(--height);
 }
 main > header {
 	page: pagebooktitle;
@@ -91,59 +93,59 @@ section.pagestartnumbers {
 	counter-reset: page 1;
 }
 @page blank :left{
-  @bottom-left {
-    content: "";
-  }
+	@bottom-left {
+		content: "";
+	}
 }
 @page blank :right{
-  @bottom-right {
-    content: "";
-  }
+	@bottom-right {
+		content: "";
+	}
 }
 @page pagenonumbers{
-  @bottom-right {
-    content: "";
-  }
-  @bottom-center {
-    content: "";
-  }
-  @bottom-left {
-    content: "";
-  }
-  @top-left {
-    content: "";
-  }
-  @top-center {
-    content: "";
-  }
-  @top-right {
-    content: "";
-  }
+	@bottom-right {
+		content: "";
+	}
+	@bottom-center {
+		content: "";
+	}
+	@bottom-left {
+		content: "";
+	}
+	@top-left {
+		content: "";
+	}
+	@top-center {
+		content: "";
+	}
+	@top-right {
+		content: "";
+	}
 }
 @page pagewithborderline {
-    border-top: thin black solid;
-    border-bottom: thin black solid;
+	border-top: thin black solid;
+	border-bottom: thin black solid;
 }
 @page pagefrontmatter {
 	margin-top:30%;
-  @bottom-right {
-    content: "";
-  }
-  @bottom-center {
-    content: "";
-  }
-  @bottom-left {
-    content: "";
-  }
-  @top-left {
-    content: "";
-  }
-  @top-right {
-    content: "";
-  }
-  @top-center {
-    content: "";
-  }
+	@bottom-right {
+		content: "";
+	}
+	@bottom-center {
+		content: "";
+	}
+	@bottom-left {
+		content: "";
+	}
+	@top-left {
+		content: "";
+	}
+	@top-right {
+		content: "";
+	}
+	@top-center {
+		content: "";
+	}
 }
 @page pagelowerstart {
 	margin-top: 30%;
@@ -158,86 +160,86 @@ section.pagestartnumbers {
 	margin-top: 30%;
 }
 @page :left {
-  margin-right: 1.0in;
+	margin-right: 1.0in;
 }
 @page :right {
-  margin-left: 1.0in;
+	margin-left: 1.0in;
 }
 
 @page :right {
-  @top-left {
-    content: ".._||_.. && .. || ..";
-    font-size: 9pt;
-  }
-  @top-right {
-    content: ".._|| .. _ .. || ..";
-    font-size: 9pt;
-  }
-  @top-center {
-    content: "mctavish";
-    font-size: 9pt;
-  }
+	@top-left {
+		content: ".._||_.. && .. || ..";
+		font-size: 9pt;
+	}
+	@top-right {
+		content: ".._|| .. _ .. || ..";
+		font-size: 9pt;
+	}
+	@top-center {
+		content: "mctavish";
+		font-size: 9pt;
+	}
 }
 
 @page :left {
-  @top-left {
-    content: ".._||_.. _._ .. || ..";
-    font-size: 9pt;
-  }
-  @top-right {
-    content: ".._|| .. _ .. || ..";
-    font-size: 9pt;
-  }
-  @top-center {
-    content: "blue atlas ::: field notes";
-    font-size: 9pt;
-  }
+	@top-left {
+		content: ".._||_.. _._ .. || ..";
+		font-size: 9pt;
+	}
+	@top-right {
+		content: ".._|| .. _ .. || ..";
+		font-size: 9pt;
+	}
+	@top-center {
+		content: "blue atlas ::: field notes";
+		font-size: 9pt;
+	}
 }
 
 @page :left {
-  @bottom-right {
-    content: counter(page);
-	font-family:  var(--monospace_zerodot);
-	font-weight:400;
-	font-size: 14pt;
-	color: var(--warmlightgray);
-  }
-  @bottom-left {
-    content: "mctavish";
-	font-family:  var(--monospace_zerodot);
-	font-weight:400;
-	font-size: 9pt;
-	color: var(--warmgray);
-  }
-  @bottom-center {
-    content: ".. || ..";
-	font-weight:500;
-	font-size: 14pt;
-	color: var(--warmblack);
-  }
+	@bottom-right {
+		content: counter(page);
+		font-family:  var(--monospace_zerodot);
+		font-weight:400;
+		font-size: 14pt;
+		color: var(--warmlightgray);
+	}
+	@bottom-left {
+		content: "mctavish";
+		font-family:  var(--monospace_zerodot);
+		font-weight:400;
+		font-size: 9pt;
+		color: var(--warmgray);
+	}
+	@bottom-center {
+		content: ".. || ..";
+		font-weight:500;
+		font-size: 14pt;
+		color: var(--warmblack);
+	}
 }
 
 @page :right {
-  @bottom-right {
-    content: counter(page);
-	font-family:  var(--monospace_zerodot);
-	font-weight:400;
-	font-size: 14pt;
-	color: var(--warmlightgray);
-  }
-  @bottom-left {
-    content: "field notes";
-	font-family:  var(--monospace_zerodot);
-	font-weight:400;
-	font-size: 9pt;
-	color: var(--warmgray);
-  }
-  @bottom-center {
-    content: ".. < > ..";
-	font-weight:400;
-	font-size: 14pt;
-	color: var(--warmblack);
-  }
+	@bottom-right {
+		content: counter(page);
+		font-family:  var(--monospace_zerodot);
+		font-weight:400;
+		font-size: 14pt;
+		color: var(--warmlightgray);
+	}
+	@bottom-left {
+		content: "field notes";
+		font-family:  var(--monospace_zerodot);
+		font-weight:400;
+		font-size: 9pt;
+		color: var(--warmgray);
+	}
+	@bottom-center {
+		content: ".. < > ..";
+		font-weight:400;
+		font-size: 14pt;
+		color: var(--warmblack);
+	}
 }
 #afterword, #acknowledgments, #essay, #bio, #notes3rivers, #grantthanks  {
 	text-align: justify;
@@ -309,15 +311,15 @@ section > header > h1 {
 }
 /*
 section > article:nth-child(3n+0) {
-	border-left: var(--red) 0.02in dotted;
+border-left: var(--red) 0.02in dotted;
 }
 section > article:nth-child(3n+1) {
-	border-left: var(--warmlightgray) 0.02in dashed;
+border-left: var(--warmlightgray) 0.02in dashed;
 }
 section > article:nth-child(3n+1) {
-	border-left: var(--yellow) 0.02in dashed;
+border-left: var(--yellow) 0.02in dashed;
 }
-*/
+ */
 article header, article header h1 {
 	margin-top:0;
 	padding-top:0;
@@ -349,11 +351,11 @@ section > div.inscription {
 }
 /*
 article {
-  break-before: page;
+break-before: page;
 }
-*/
+ */
 section#sectiontoc > div {
-  break-before: page;
+	break-before: page;
 }
 section > article:first-of-type {
 	break-before: page;
@@ -365,13 +367,13 @@ section {
 	break-before: page;
 }
 h1, h2, h3 {
-  break-after: avoid-page;
+	break-after: avoid-page;
 }
 article {
-  break-inside: avoid-page;
+	break-inside: avoid-page;
 }
 div.blank {
-  page: blank;
+	page: blank;
 }
 div.address {
 	line-height: 1;
@@ -392,7 +394,7 @@ span.indent5 {
 	padding-left: var(--indent5)
 }
 .top {
-  display: none;
+	display: none;
 }
 a {
 	color: #000;
@@ -532,8 +534,8 @@ article.moreroom  p {
 p.citation {
 	text-align: left;
 	padding-left: 1.5em;
-  	text-indent: -1.5em;
-  	text-indent: hanging;
+	text-indent: -1.5em;
+	text-indent: hanging;
 }
 img {
 	margin:0.06in;
@@ -541,6 +543,6 @@ img {
 	max-width:20%
 }
 p {
-  orphans: 3;
-  widows: 4;
+	orphans: 3;
+	widows: 4;
 }
