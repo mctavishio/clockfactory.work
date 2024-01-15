@@ -1,5 +1,6 @@
-#codeart #newmediaart #abstractart #creativecoding 
-#algorithmicart, #assemblage #framebyframe 
+#codeart  #creativecoding 
+#algorithmicart #newmediaart
+#animation #assemblage #framebyframe 
 #ffmpeg #soxaudio #w3c #nodejs 
 #html #css #svg #computerart #creativecodeart
 #timebased #lgbqtia2s+ #animation #handcoded #text
@@ -7,13 +8,14 @@ the book:
 https://storage.googleapis.com/clockfactory/mill20240108140017/printbook.pdf
 
 for youtube
-codeart,newmediaart,abstractart,creativecoding, 
+codeart, creativecoding, 
 assemblage,framebyframe, algorithmicart,
 ffmpeg,soxaudio,w3c,nodejs,
 html,css,svg,computerart,creativecodeart,
-timebased,lgbqtia2s+,animation,handcoded,text
+abstractart, newmediaart,
+timebased,lgbqtia2s+,handcoded,text
 
 
 for vimeo
 codeart,newmediaart,abstractart,creativecoding, 
-animation,handcoded, algorithmicart
+animation, handcoded, algorithmicart

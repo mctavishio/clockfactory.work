@@ -3244,7 +3244,7 @@ let input =
 	],
 	"bookobj": {
 		"title": "quilt factory",
-		"subtitle": "Wed Jan 10 2024",
+		"subtitle": "Sun Jan 14 2024",
 		"description": "algorithmic quilt patterns",
 		"rooturl": "https://quiltfactory.work",
 		"authorurl": "https://mctavish.work/index.html",
@@ -3266,7 +3266,7 @@ let input =
 	},
 	"filmobj": {
 		"title": "quilt factory",
-		"subtitle": "Wed Jan 10 2024",
+		"subtitle": "Sun Jan 14 2024",
 		"description": "algorithmic quilt patterns",
 		"rooturl": "https://quiltfactory.work",
 		"authorurl": "https://mctavish.work/index.html",

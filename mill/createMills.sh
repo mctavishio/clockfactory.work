@@ -5,7 +5,7 @@ echo $ts
 echo $dt
 echo "// mill folders" > tempmills$dt.js
 echo "module.exports = [" > tempmills$dt.js
-for file in $(ls -d data/mill2024010*); do 
+for file in $(ls -d data/mill202312*); do 
  echo "'$file'," >> tempmills$dt.js
 done
 echo "] " >> tempmills$dt.js

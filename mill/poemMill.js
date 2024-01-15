@@ -1,5 +1,6 @@
-const input = require("./input.js");
 const fs = require("fs"); 
+const input = require("./input.js");
+const millinfo = require("./millinfo.js");
 console.log(process.argv);
 let args = process.argv;
 const Bfile = `./B.js`;
@@ -33,6 +34,7 @@ const svgheight = h*pixelsperunit;
 const bookid = process.argv[4] ? process.argv[4] : "testmill";
 const poemsfile = `./poems.js`;
 const framesfile = `./frames.js`;
+const coversfile = `./covers.js`;
 const bookfile = `./book.js`;
 const filmfile = `./film.js`;
 const rawpoems = require("./poemTextLists.js");
@@ -115,6 +117,45 @@ let poemsobj = [...new Array(nticks).keys()].map( j => {
 	return poem;
 });
 
+let coversobj = [...new Array(4).keys()].map( j => j*8).flatMap( j => { 
+	let cover = {
+		id: `${(j).toString().padStart(3, '0')}`,
+		title: `mctavish #${millinfo.dt}`,
+		subtitle: millinfo.datetime, 
+		text: "", 
+	};
+	let jd=j;
+	let elementdraw = B.elements.map( layer => {
+		return layer.map( el => {
+			//console.log(el.role);
+			let cx = el.b[jd].cx || el.cx;
+			let cy = el.b[jd].cy || el.cy;
+			let r = el.b[jd].r || el.r;
+			let w = el.b[jd].w || el.w;
+			let h = el.b[jd].h || el.h;
+			let sw = el.b[jd].sw || el.sw;
+			let sf = el.b[jd].sf || el.sf;
+			let sd = el.b[jd].sd || el.sd;
+			let so = el.b[jd].so || el.so;
+			let fo = el.b[jd].fo || el.fo;
+			let strokecolor = el.b[jd].strokecolor || el.strokecolor;
+			let fillcolor = el.b[jd].fillcolor || el.fillcolor;
+			let p = tools.drawp[el.role]( {cx,cy,r,w,h,sw,sf,sd,so,fo,strokecolor,fillcolor } ); 
+			//console.log(JSON.stringify(p));
+			//console.log(JSON.stringify(tools.drawf(canvas,p,el.tag)));
+			return tools.drawf(canvas,p,el.tag);
+		}).join(" ");
+	}).join(" ");
+	cover.figure = {
+		picture:`
+	<svg viewBox="0 0 ${svgwidth*2.2} ${svgheight*1.2}">
+		${elementdraw}
+	</svg>
+	`,
+		caption: "",
+	};
+	return cover;
+});
 //let framesobj = poemsobj.flatMap( (poem,j) => { 
 let framesobj = [...new Array(nticks).keys()].flatMap( j => { 
 	//let poem = (j>0&&j<nticks) ? poemsobj[j%nticks] : {title:"fieldNotes",figure:{caption:"field notes!"}};
@@ -250,6 +291,10 @@ let framestr = `let poems =
 	${JSON.stringify(framesobj)};
 module.exports = poems;`
 
+let coversstr = `let covers =
+	${JSON.stringify(coversobj)};
+module.exports = covers;`
+
 fs.writeFileSync(bookfile, bookstr, (err) => {
 	if (err)
 		console.log(err);
@@ -276,5 +321,12 @@ fs.writeFileSync(framesfile, framestr, (err) => {
 		console.log(err);
 	else {
 		console.log(`${framesfile} written successfully\n`);
+	}
+});
+fs.writeFileSync(coversfile, coversstr, (err) => {
+	if (err)
+		console.log(err);
+	else {
+		console.log(`${coversfile} written successfully\n`);
 	}
 });

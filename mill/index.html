@@ -18,7 +18,7 @@
 			"breadcrumb": "core text",
 			"url": "https://quiltfactory.work",
 			"description": "code art ::: algorithmic quilt patterns",
-			"datePublished": "Thu Jan 11 2024",
+			"datePublished": "Sun Jan 14 2024",
 			"image": "/apple-touch-icon.png",
 			"author": "https://mctavish.work",
 			"license": "http://creativecommons.org/licenses/by-nc-sa/3.0/us/deed.en_US"
@@ -28,16 +28,27 @@
 	<link rel="stylesheet" media="screen" href="css/core.css"/>
 	<style>
 	body {
-		background-color:var(--warmblack);
-		border-width:5%;
-		border-left: dashed;
-		border-color: var(--warmlightwhite);
 		background-image: url("https://storage.googleapis.com/clockfactory/mill20240108142732/poster0000_20240108142732.png"); 
 		background-size:cover; background-repeat: no-repeat;
 		background-attachment: fixed;
 		background-size: cover;
-		}
+		border-left: solid;
+ 		border-left-width: 6px;
+ 		border-left-color: var(--warmblack);
+ 		border-right: solid;
+ 		border-right-width: 6px;
+ 		border-right-color: var(--warmlightwhite);
+	}
+	h5 {
+ 		color: var(--warmblack);
+ 	}
 	main {
+		border-left: dashed;
+ 		border-left-width: 6px;
+ 		border-left-color: var(--yellow);
+ 		border-right: dashed;
+ 		border-right-width: 6px;
+ 		border-right-color: var(--red);
 		background-color:var(--gray);
 	}
 	</style>
@@ -47,22 +58,44 @@
 <main class="expand narrow" id="top">
 <header>
 	<h1>quilt factory</h1>
-	<h2>Thu Jan 11 2024</h2>
+	<h2>compiled ::: <span class="small">Sun Jan 14 2024</span></h2>
 </header>
 <nav>
 	<ul>
 		<li><a href="https://mctavish.work/index.html" id="homelink">go to mctavish portfolio</a></li>
+		<li><a href="#videoall">composite video</a></li>
+		<li><a href="#list">net sequences</a></li>
+		<!--<li><a href="#about">about</a></li>-->
+		<li><a href="#thanks">project support</a></li>
 	</ul>
 </nav>
 <div class="screenreader-text">
 	<p>Your feedback is always welcome.</p>
 </div>
+<article id="videoall">
+	<header>
+		<h1>composite video</h1>
+	</header>
+	<div id="content">
+	<figure>
+	<div class="vimeowrapper16x9" >
+		<iframe src="https://player.vimeo.com/video/902609443?title=0&amp;byline=0&amp;portrait=0" width="600" height="338"frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+	</div>
+	</figure>
+	</div>
+</article>
 <article id="list">
 	<header>
 		<h1>quilt patterns</h1>
 	</header>
 	<div class="flex">
 	<div class="content">
+	<h5>physical samples</h5>
+ 	<ul>
+ 		<li><a href="physicalquilt.html">sample physical quilt</a></li>
+ 		<li><a href="installation.html">previous quilted work</a></li>
+ 	</ul>
+ 	<h5>digital samples</h5>
 	<ul>
 		<li><a href="index20240107104459.html">quilt set 20240107104459</a></li>
 		<li><a href="index20240107105227.html">quilt set 20240107105227</a></li>
@@ -79,12 +112,11 @@
 </article>
 <article id="thanks">
 	<header>
-		<h1>thanks</h1>
+		<h1>project support</h1>
 	</header>
-	<div class="flex">
 	<div class="content">
-	<p>funded by the MN state arts board</p>
-	</div></div>
+	<p>Kathy McTavish was a fiscal year 2023 recipient of a Creative Support for Individuals grant from the Minnesota State Arts Board. This activity was made possible by the voters of Minnesota through a grant from the Minnesota State Arts Board, thanks to a legislative appropriation from the arts and cultural heritage fund.</p>
+	</div>
 </article>
 </main>
 </div>

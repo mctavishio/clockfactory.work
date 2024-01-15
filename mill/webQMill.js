@@ -2,19 +2,19 @@ const fs = require("fs");
 const poemfile = `./poems.js`;
 const bookfile = `./book.js`;
 const tools = require("./tools.js");
-const mills = require("./mills.js");
+const mills = require("./millsQ.js");
 const dt = new Date();
 const timestamp = dt.getTime();
 const datetime = dt.toDateString();
-const description = "code art ::: algorithmic net patterns";
-const rooturl = "https://netfactory.work";
+const description = "code art ::: algorithmic quilt patterns";
+const rooturl = "https://quiltfactory.work";
 const gsurl = "https://storage.googleapis.com/clockfactory";
 const authorurl = "https://mctavish.work";
 const chosenmill = mills[tools.randominteger(0,mills.length)];
 let indexhtml = `
 <html>
 <head>
-	<title>net factory</title>
+	<title>quilt factory</title>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
 	<meta name="description" content="${description}"/>
@@ -27,7 +27,7 @@ let indexhtml = `
 		{
 			"@context": "http://schema.org",
 			"@type": "WebPage",
-			"name": "net factory",
+			"name": "quilt factory",
 			"breadcrumb": "core text",
 			"url": "${rooturl}",
 			"description": "${description}",
@@ -40,15 +40,11 @@ let indexhtml = `
 
 	<link rel="stylesheet" media="screen" href="css/core.css"/>
 	<style>
-	html {
-		background-color: var(--warmblack);
-	}
 	body {
-		background-image: url("${gsurl}/${mills[0]}/poster0000_${mills[0].substring(4)}.png"); 
+		background-image: url("${gsurl}/${chosenmill}/poster0000_${chosenmill.slice(4)}.png"); 
 		background-size:cover; background-repeat: no-repeat;
 		background-attachment: fixed;
 		background-size: cover;
-		background-color:var(--warmblack);
 		border-left: solid;
  		border-left-width: 6px;
  		border-left-color: var(--warmblack);
@@ -60,12 +56,12 @@ let indexhtml = `
  		color: var(--warmblack);
  	}
 	main {
-		border-left: solid;
+		border-left: dashed;
  		border-left-width: 6px;
- 		border-left-color: var(--warmlightwhite);
- 		border-right: solid;
+ 		border-left-color: var(--yellow);
+ 		border-right: dashed;
  		border-right-width: 6px;
- 		border-right-color: var(--warmblack);
+ 		border-right-color: var(--red);
 		background-color:var(--gray);
 	}
 	</style>
@@ -74,7 +70,7 @@ let indexhtml = `
 <div id="mainflex">
 <main class="expand narrow" id="top">
 <header>
-	<h1>net factory</h1>
+	<h1>quilt factory</h1>
 	<h2>compiled ::: <span class="small">${datetime}</span></h2>
 </header>
 <nav>
@@ -83,7 +79,7 @@ let indexhtml = `
 		<li><a href="#videoall">composite video</a></li>
 		<li><a href="#list">net sequences</a></li>
 		<!--<li><a href="#about">about</a></li>-->
-		<li><a href="#thanks">thanks</a></li>
+		<li><a href="#thanks">project support</a></li>
 	</ul>
 </nav>
 <div class="screenreader-text">
@@ -96,51 +92,35 @@ let indexhtml = `
 	<div id="content">
 	<figure>
 	<div class="vimeowrapper16x9" >
-		<iframe src="https://player.vimeo.com/video/902778599?title=0&amp;byline=0&amp;portrait=0" width="600" height="338"frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		<iframe src="https://player.vimeo.com/video/902609443?title=0&amp;byline=0&amp;portrait=0" width="600" height="338"frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 	</div>
 	</figure>
 	</div>
 </article>
-
 <article id="list">
 	<header>
-		<h1>net sequences</h1>
+		<h1>quilt patterns</h1>
 	</header>
+	<div class="flex">
 	<div class="content">
+	<h5>physical samples</h5>
+ 	<ul>
+ 		<li><a href="physicalquilt.html">sample physical quilt</a></li>
+ 		<li><a href="installation.html">previous quilted work</a></li>
+ 	</ul>
  	<h5>digital samples</h5>
 	<ul>`
 indexhtml = indexhtml + mills.map( name=>name.slice(4) ).map( name=>{
 	return	`
-		<li><a href="index${name}.html">net sequence ${name}</a></li>`;
+		<li><a href="index${name}.html">quilt set ${name}</a></li>`;
 }).join("");
 indexhtml = indexhtml + ` 
 	</ul>
-	</div>
+	</div></div>
 </article>
-<!--
-<article id="about">
-	<header>
-		<h1>notes</h1>
-	</header>
-	<div class="content">
-	<p>This is part of a larger research project into the sequences ::: the continuums
-	<ul>
-		<li>tonal fragements => sound threads</li>
-		<li>frame sequence => film</li>
-		<li>list of text & image blocks => book</li>
-		<li>list of vectors => composite image</li>
-		<li>list of composite images => prints</li>
-		<li>list of media packages => index</li>
-	</ul>
-	</p>
-	<p>I am also interested in the act of tweening ::: that discrete
-	set of bridges from one moment to the next.</p>
-	</div>
-</article>
--->
 <article id="thanks">
 	<header>
-		<h1>thanks</h1>
+		<h1>project support</h1>
 	</header>
 	<div class="content">
 	<p>Kathy McTavish was a fiscal year 2023 recipient of a Creative Support for Individuals grant from the Minnesota State Arts Board. This activity was made possible by the voters of Minnesota through a grant from the Minnesota State Arts Board, thanks to a legislative appropriation from the arts and cultural heritage fund.</p>
@@ -169,7 +149,7 @@ mills.map( mill=> {
 			`poster0002_${s}.png`,
 			`poster0004_${s}.png`,
 		],
-		title: `net ${s}`,
+		title: `quilt ${s}`,
 		subtitle: `${year}.${month}.${date} ${hour}:${minute}`, 
 		url: `index${s}.html`,
 	}
@@ -203,25 +183,19 @@ mills.map( mill=> {
 	<link rel="stylesheet" media="screen" href="css/core.css"/>
 	<style>
 	body {
-		border-left: solid;
- 		border-left-width: 6px;
- 		border-left-color: var(--warmblack);
- 		border-right: solid;
- 		border-right-width: 6px;
- 		border-right-color: var(--warmlightwhite);
 		background-image: url("${gsurl}/${mill.name}/${mill.posters[tools.randominteger(0,3)]}"); 
 		background-size:cover; background-repeat: no-repeat;
 		background-attachment: fixed;
 		background-size: cover;
 		}
 	main {
-		border-left: solid;
- 		border-left-width: 6px;
- 		border-left-color: var(--warmlightwhite);
- 		border-right: solid;
- 		border-right-width: 6px;
- 		border-right-color: var(--warmblack);
 		background-color:var(--gray);
+		border-left: dashed;
+ 		border-left-width: 6px;
+ 		border-left-color: var(--warmblack);
+ 		border-right: dashed;
+ 		border-right-width: 6px;
+ 		border-right-color: var(--warmlightwhite);
 	}
 	</style>
 </head>
@@ -232,12 +206,12 @@ mills.map( mill=> {
 <main class="expand narrow" id="top">`;
 	html = html + `
 <header>
-	<h1>net sequence</h1>
+	<h1>quilt set</h1>
 	<h2>created ::: ${mill.datetime}</h2>
 </header>
 <nav>
 	<ul>
-		<li><a href="index.html" id="indexlink">back to net index</a></li>
+		<li><a href="index.html" id="indexlink">back to quilt index</a></li>
 		<li><a href="https://mctavish.work/index.html" id="homelink">go to mctavish portfolio</a></li>
 		<li><a href="#audio">audio tracks</a></li>
 		<li><a href="#books">books</a></li>
@@ -287,8 +261,7 @@ mills.map( mill=> {
 	</header>
 	<div class="content">
 	<ul>
-		<li><a href="${gsurl}/${mill.name}/printbook.pdf">illustrated book</a></li>
-		<li><a href="${gsurl}/${mill.name}/printbroadsides.pdf">broadsides</a></li>
+		<li><a href="${gsurl}/${mill.name}/printbook.pdf">pattern book</a></li>
 	</ul>
 	</div>
 </article>
