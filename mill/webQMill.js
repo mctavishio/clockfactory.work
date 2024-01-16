@@ -77,7 +77,7 @@ let indexhtml = `
 	<ul>
 		<li><a href="https://mctavish.work/index.html" id="homelink">go to mctavish portfolio</a></li>
 		<li><a href="#videoall">composite video</a></li>
-		<li><a href="#list">net sequences</a></li>
+		<li><a href="#list">quilt sequences</a></li>
 		<!--<li><a href="#about">about</a></li>-->
 		<li><a href="#thanks">project support</a></li>
 	</ul>

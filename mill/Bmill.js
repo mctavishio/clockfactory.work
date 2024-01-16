@@ -22,15 +22,12 @@ const colors = input.colors;
 const allcolors = input.allcolors;
 const nx = input.nx || 5;
 const ny = input.ny || 5;
-const nz = input.nz || 1;
-const nblocks = input.nblocks || 5;
+const nz = input.nz || 2;
 const nmin = Math.min(nx,ny);
 const nmax = Math.max(nx,ny);
-const m = (nx*ny + nx + ny) * nz;
+const m = nx*ny*nz;
+const ne = (nx*2+ny)*nz;
 const n = nmin;
-const dx = Math.round(100/(nx*nblocks))/100, dy = Math.round(100/(ny*nblocks))/100;
-const blockdx = Math.round(100/(nblocks))/100, blockdy = Math.round(100/(nblocks))/100;
-console.log(`dx=${dx} blockdx=${blockdx}`);
 //console.log(`colorseq = ${JSON.stringify(colorseq)}`);
 const xgrid = input.xgrid;
 const ygrid = input.ygrid;
@@ -44,33 +41,29 @@ let pigmentsets = input.pigmentsets;
 let elements = [];
 elements[0] = [
 	{tag:"rect",role:"rect",b:[],n:0,block:0,x:0,y:0,z:0,e:0,cx:0,cy:0,w:1,h:1,sw:0.01,sf:0,sd:4,so:1,fo:1,strokecolor:pigments.warmblack,fillcolor:pigments.warmlightwhite},
-	{tag:"rect",role:"rect",b:[],n:0,block:0,x:0,y:0,z:0,e:1,cx:0.1,cy:0.1,w:0.8,h:0.8,sw:0.01,sf:0.4,sd:1.4,so:1,fo:1,strokecolor:pigments.warmlightgray,fillcolor:pigments.warmlightwhite}
 ];
 let count=0;
 [...new Array(nz).keys()].map(z=>z+1).forEach( z=> {
 	let e = -1;
 	elements[z] = [];
-	[...new Array(nblocks).keys()].forEach( blockx => {
-		[...new Array(nblocks).keys()].forEach( blocky => {
-			[...new Array(nx).keys()].forEach( x=> {
-				[...new Array(ny).keys()].forEach( y=> {
-					//let cx = xgrid[block*nx+x];
-					//let cy = xgrid[block*ny+y];
-					//let cx = xgrid[blockx*nx+x];
-					//let cy = ygrid[blocky*ny+y];
-					let cx = blockdx*blockx + x*dx;
-					let cy = blockdy*blocky + y*dy;
-					++e;++count;
-					elements[z].push({b:[],tag:"rect", role:"rect", blockx,blocky,x,y,z,e,n:count,cx,cy,w:dx,h:dy,so:0.0,fo:1.0,strokecolor:pigments.warmlightwhite, fillcolor:pigments.gray});
-				});
-			});
+	[...new Array(nx).keys()].forEach( x=> {
+		[...new Array(ny).keys()].forEach( y=> {
+			let cx = xgrid[x];
+			let cy = ygrid[y];
+			let color = allcolors[tools.randominteger(0,allcolors.length)];
+			++e;++count;
+			elements[z].push({b:[], tag:"line", role:"hline", x,y,z,e,n:count, cx:xgrid[x], cy:ygrid[y], so:1.0, fo:0.0, strokecolor:color, fillcolor:color});
+			color = allcolors[tools.randominteger(0,allcolors.length)];
+			++e;++count;
+			elements[z].push({b:[], tag:"circle", role:"scircle", x,y,z,e, n:count, cx:xgrid[x], cy:ygrid[y], so:1.0, fo:0.0, strokecolor:color, fillcolor:color}); 
+			color = allcolors[tools.randominteger(0,allcolors.length)];
+			++e;++count;
+			elements[z].push({b:[], tag:"line", role:"vline", x,y,z,e,n:count, cx:xgrid[x], cy:ygrid[y], so:1.0, fo:0.0, strokecolor:color, fillcolor:color});
+			color = allcolors[tools.randominteger(0,allcolors.length)];
+			++e;++count;
+			elements[z].push({b:[], tag:"circle", role:"fcircle", x,y,z,e, n:count, cx:xgrid[x], cy:ygrid[y], so:0.0, fo:1.0, strokecolor:color, fillcolor:color}); 
+			//++e;++count;
 		});
-	/*	
-		++e;++count;
-		elements[z].push({b:[],tag:"line", role:"vline", blockx,blocky:blockx,x:blockx,y:blockx,z,e,n:count,cx:blockx*nx*dx,cy:blockx*ny*dy,w:dx,h:dy, so:1, fo:0,sd:0.6, sf:0,sw:0.01,strokecolor:pigments.warmblack, fillcolor:pigments.warmlightwhite});
-		++e;++count;
-		elements[z].push({b:[],tag:"line", role:"hline", blockx,blocky:blockx,x:blockx,y:blockx,z,e,n:count,cx:blockx*nx*dx,cy:blockx*ny*dy,w:dx,h:dy, so:1, fo:0,sd:0.6, sf:0, sw:0.01,strokecolor:pigments.warmblack, fillcolor:pigments.warmlightwhite});
-	*/	
 	});
 });
 
@@ -95,8 +88,8 @@ let Bfilm = {
 		});
 	})
 }
-const dotween = () => { return tools.randominteger(0,100) < 101 }
-const ischange = () => { return tools.randominteger(0,100) > -1 }
+const dotween = () => { return tools.randominteger(0,100) < 80 }
+const ischange = () => { return tools.randominteger(0,100) > 12 }
 
 /* layer 0
  * rectangle background
@@ -104,7 +97,8 @@ const ischange = () => { return tools.randominteger(0,100) > -1 }
 [0].forEach( z => {
 	[...new Array(elements[z].length).keys()].forEach( n => { 
 		B.elements[z][n].b = [...new Array(nticks).keys()].map( j => {
-			return {};
+			let sf = tools.randominteger(1,20)/100;
+			return { };
 		});
 		Bfilm.elements[z][n].b = [...new Array(nticks).keys()].flatMap( j => {
 			return [...new Array(fps).keys()].map( t => {
@@ -118,49 +112,19 @@ const ischange = () => { return tools.randominteger(0,100) > -1 }
  * */
 [...new Array(nz).keys()].map(z=>z+1).forEach( z => { 
 	[...new Array(nticks).keys()].forEach( t => {
-		let pigmentcount = Object.keys(pigments).reduce( (acc,x,j) => {
-			color = pigments[x];
-			acc[color] = 0;
-			return acc;
-		}, {});
-		let blockpigments = [...Array(nblocks).keys()].map( block => {
-			return [...Array(nx).keys()].map( x => {
-				return [...Array(ny).keys()].map( y => {
-					let pigmentset = "p1";
-					if( x===0 && y==0 ) {pigmentset = "p4";} 
-					else if( (x===0 || x===nx-1) && (y===0 || y===ny-1) ) { pigmentset = "p3";} 
-					else if( (x===1 || x===nx-2) && (y===1 || y===ny-2) ) { pigmentset = "p2";} 
-					let color = pigmentsets[pigmentset][tools.randominteger(0,pigmentsets[pigmentset].length)]; 
-					pigmentcount[color] = pigmentcount[color] +  nblocks;
-					return color;
-				});
-			});
-		});
-		B.pigmentcount.push(pigmentcount);
-		console.log(`pigmentcount = ${JSON.stringify(pigmentcount)}`);
-		console.log(`blockpigments=${JSON.stringify(blockpigments,null,"\t")}`);
-		let blocksrotations = blockpigments.map( block => {
-			//let rot1 = tools.rotateClockwise(block);
-			let rot1 = tools.rotatenxnMatrix(block);
-			//let rot1 = tools.rotate(block);
-			let rot2 = tools.rotatenxnMatrix(rot1); 
-			let rot3 = tools.rotatenxnMatrix(rot2); 
-			//return [block,rot3,rot2,rot1,block];
-			return [block,rot1,rot2,rot3,block];
-		});
 		B.elements[z].forEach( (el,j) => {
-			let bt = [];
-			let fillcolor = blocksrotations[el.blocky][el.blockx][el.x][el.y]; 
-			//let fillcolor = blockpigments[el.blocky][el.x][el.y]; 
+			let bt = {};
+			let sw = tools.randominteger(1,40)/100;
+			let sd = el.role==="scircle" ? tools.randominteger(.4,8)/100 : tools.randominteger(.4,14)/100;
+			let r = el.role==="fcircle" ? tools.randominteger(1,20)/100 : tools.randominteger(1,40)/100;
 			if( t===0 || ischange() || t===nticks-1 ) {
-				bt = { fillcolor };
+				bt = { sw, sd, r };
 			}
 			else { bt = el.b[t-1]; }
 			el.b[t] = bt;
 		});
 	});
 	B.elements[z].forEach( (el,j) => {
-		/*
 		[...new Array(Math.floor(nticks/5)).keys()].forEach(x=> {
 			let t = tools.randominteger(1,nticks-2);
 			el.b[t] = tools.tween(el.b[t-1],el.b[t+1],1,2);
@@ -177,7 +141,7 @@ const ischange = () => { return tools.randominteger(0,100) > -1 }
 			el.b[t+1] = tools.tween(el.b[t-1],el.b[t+3],2,4);
 			el.b[t+2] = tools.tween(el.b[t-1],el.b[t+3],3,4);
 		});
-		*/
+	
 		//console.log(`el.b[0] = ${JSON.stringify(el.b[0])}`);
 		//console.log(`el.b[nticks-1] = ${JSON.stringify(el.b[nticks-1])}`);
 		Bfilm.elements[z][j].b = [...new Array(nticks).keys()].flatMap( t => { 
@@ -192,7 +156,6 @@ const ischange = () => { return tools.randominteger(0,100) > -1 }
 				let tag = t<nticks/2 ? "circle" : "line";
 				if(Bfilm.elements[z][j].tag===tag) {istween = 1}
 			}
-
 			return [...new Array(fps).keys()].map( f => {
 				//console.log(`f=${f} t=${t} istween=${istween}`);
 				let step = istween ? tools.tween(p1,p2,f,fps) : el.b[tools.randominteger(0,el.b.length)];

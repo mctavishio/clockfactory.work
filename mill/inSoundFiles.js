@@ -1,5 +1,125 @@
 [
 	{
+		"id": "372814__samulis__cello-section-vibrato-sustain-a3-susvib_a2_v1_1",
+		"keywords": "orchinstsample|cello|strings|long",
+		"file": "372814__samulis__cello-section-vibrato-sustain-a3-susvib_a2_v1_1.mp3",
+		"duration": 8.123991,
+		"nchannels": 2,
+		"rate": 44100,
+		"type": "mp3",
+		"bitrate": 16
+	},
+	{
+		"id": "372815__samulis__cello-section-vibrato-sustain-b2-susvib_b1_v1_1",
+		"keywords": "orchinstsample|cello|strings|long",
+		"file": "372815__samulis__cello-section-vibrato-sustain-b2-susvib_b1_v1_1.mp3",
+		"duration": 8.437007,
+		"nchannels": 2,
+		"rate": 44100,
+		"type": "mp3",
+		"bitrate": 16
+	},
+	{
+		"id": "372824__samulis__cello-section-vibrato-sustain-e3-susvib_f2_v1_1",
+		"keywords": "orchinstsample|cello|strings|long",
+		"file": "372824__samulis__cello-section-vibrato-sustain-e3-susvib_f2_v1_1.mp3",
+		"duration": 7.627007,
+		"nchannels": 2,
+		"rate": 44100,
+		"type": "mp3",
+		"bitrate": 16
+	},
+	{
+		"id": "372849__samulis__cello-section-tremolo-e3-trem_f2_v1_1",
+		"keywords": "orchinstsample|cello|strings|long",
+		"file": "372849__samulis__cello-section-tremolo-e3-trem_f2_v1_1.mp3",
+		"duration": 6.712993,
+		"nchannels": 2,
+		"rate": 44100,
+		"type": "mp3",
+		"bitrate": 16
+	},
+	{
+		"id": "373102__samulis__solo-contrabass-non-vibrato-sustain-b3-bkctbss_susnv_b2_v1_rr1",
+		"keywords": "orchinstsample|bass|strings|long",
+		"file": "373102__samulis__solo-contrabass-non-vibrato-sustain-b3-bkctbss_susnv_b2_v1_rr1.mp3",
+		"duration": 8.070998,
+		"nchannels": 2,
+		"rate": 44100,
+		"type": "mp3",
+		"bitrate": 16
+	},
+	{
+		"id": "374447__samulis__viola-section-vibrato-sustain-e3-violaens_susvib_e2_v1_1",
+		"keywords": "orchinstsample|strings|viola",
+		"file": "374447__samulis__viola-section-vibrato-sustain-e3-violaens_susvib_e2_v1_1.mp3",
+		"duration": 9.220998,
+		"nchannels": 2,
+		"rate": 44100,
+		"type": "mp3",
+		"bitrate": 16
+	},
+	{
+		"id": "374585__samulis__violin-section-vibrato-sustain-f4-vlnens_susvib_f3_v1",
+		"keywords": "orchinstsample|strings|violin",
+		"file": "374585__samulis__violin-section-vibrato-sustain-f4-vlnens_susvib_f3_v1.mp3",
+		"duration": 8.489002,
+		"nchannels": 2,
+		"rate": 44100,
+		"type": "mp3",
+		"bitrate": 16
+	},
+	{
+		"id": "374601__samulis__violin-section-tremolo-b3-vlnens_trem_b2_v1",
+		"keywords": "orchinstsample|strings|violin",
+		"file": "374601__samulis__violin-section-tremolo-b3-vlnens_trem_b2_v1.mp3",
+		"duration": 9.665011,
+		"nchannels": 2,
+		"rate": 44100,
+		"type": "mp3",
+		"bitrate": 16
+	},
+	{
+		"id": "374608__samulis__violin-section-tremolo-f3-vlnens_trem_g2_v1",
+		"keywords": "orchinstsample|strings|violin",
+		"file": "374608__samulis__violin-section-tremolo-f3-vlnens_trem_g2_v1.mp3",
+		"duration": 10.212993,
+		"nchannels": 2,
+		"rate": 44100,
+		"type": "mp3",
+		"bitrate": 16
+	},
+	{
+		"id": "373178__samulis__f-horn-muted-sustain-g4-mohorn_mute_g3_v1_1",
+		"keywords": "orchinstsample|brass|horn|long",
+		"file": "373178__samulis__f-horn-muted-sustain-g4-mohorn_mute_g3_v1_1.mp3",
+		"duration": 8.385011,
+		"nchannels": 2,
+		"rate": 44100,
+		"type": "mp3",
+		"bitrate": 16
+	},
+	{
+		"id": "373243__samulis__f-horn-sustain-a3-mohorn_sus_a2_v1_1",
+		"keywords": "orchinstsample|brass|horn|long",
+		"file": "373243__samulis__f-horn-sustain-a3-mohorn_sus_a2_v1_1.mp3",
+		"duration": 14.55,
+		"nchannels": 2,
+		"rate": 44100,
+		"type": "mp3",
+		"bitrate": 16
+	},
+	{
+		"id": "373253__samulis__f-horn-sustain-a3-mohorn_sus_a2_v2_1",
+		"keywords": "orchinstsample|brass|horn|long",
+		"file": "373253__samulis__f-horn-sustain-a3-mohorn_sus_a2_v2_1.mp3",
+		"duration": 13.688005,
+		"nchannels": 2,
+		"rate": 44100,
+		"type": "mp3",
+		"bitrate": 16
+	},
+	{
 		"id": "373957__samulis__tenor-trombone-staccato-d4-tenortbn_stac_d3_v2_rr1",
 		"keywords": "orchinstsample|brass|short",
 		"file": "373957__samulis__tenor-trombone-staccato-d4-tenortbn_stac_d3_v2_rr1.mp3",
@@ -10,8 +130,18 @@
 		"bitrate": 16
 	},
 	{
+		"id": "374016__samulis__tenor-trombone-sustain-c4-tenortbn_sus_c3_v2_1",
+		"keywords": "orchinstsample|brass|long|trombone",
+		"file": "374016__samulis__tenor-trombone-sustain-c4-tenortbn_sus_c3_v2_1.mp3",
+		"duration": 9.769002,
+		"nchannels": 2,
+		"rate": 44100,
+		"type": "mp3",
+		"bitrate": 16
+	},
+	{
 		"id": "374094__samulis__trumpet-staccato-a4-sum_shtrumpet_stac_a3_v1_rr2",
-		"keywords": "orchinstsample|brass|short",
+		"keywords": "orchinstsample|brass|short|trumpet",
 		"file": "374094__samulis__trumpet-staccato-a4-sum_shtrumpet_stac_a3_v1_rr2.mp3",
 		"duration": 1.175011,
 		"nchannels": 2,
@@ -21,9 +151,49 @@
 	},
 	{
 		"id": "374098__samulis__trumpet-staccato-c6-sum_shtrumpet_stac_c5_v1_rr2",
-		"keywords": "orchinstsample|brass|short",
+		"keywords": "orchinstsample|brass|short|trumpet",
 		"file": "374098__samulis__trumpet-staccato-c6-sum_shtrumpet_stac_c5_v1_rr2.mp3",
 		"duration": 1.41,
+		"nchannels": 2,
+		"rate": 44100,
+		"type": "mp3",
+		"bitrate": 16
+	},
+	{
+		"id": "374133__samulis__trumpet-straight-mute-sustain-e5-sum_shtrumpet_straightm-sus_f4_v1_rr1",
+		"keywords": "orchinstsample|brass|long|trumpet",
+		"file": "374133__samulis__trumpet-straight-mute-sustain-e5-sum_shtrumpet_straightm-sus_f4_v1_rr1.mp3",
+		"duration": 8.723991,
+		"nchannels": 2,
+		"rate": 44100,
+		"type": "mp3",
+		"bitrate": 16
+	},
+	{
+		"id": "374152__samulis__trumpet-sustain-f4-sum_shtrumpet_sus_g3_v1_rr1",
+		"keywords": "orchinstsample|brass|long|trumpet",
+		"file": "374152__samulis__trumpet-sustain-f4-sum_shtrumpet_sus_g3_v1_rr1.mp3",
+		"duration": 16.509002,
+		"nchannels": 2,
+		"rate": 44100,
+		"type": "mp3",
+		"bitrate": 16
+	},
+	{
+		"id": "374174__samulis__trumpet-vibrato-sustain-a4-sum_shtrumpet_susvib_a3_v2_rr1",
+		"keywords": "orchinstsample|brass|long|trumpet",
+		"file": "374174__samulis__trumpet-vibrato-sustain-a4-sum_shtrumpet_susvib_a3_v2_rr1.mp3",
+		"duration": 4.622993,
+		"nchannels": 2,
+		"rate": 44100,
+		"type": "mp3",
+		"bitrate": 16
+	},
+	{
+		"id": "374267__samulis__tuba-sustain-a3-tuba3_sus_a2_v3_rr1_mid",
+		"keywords": "orchinstsample|brass|long|tuba",
+		"file": "374267__samulis__tuba-sustain-a3-tuba3_sus_a2_v3_rr1_mid.mp3",
+		"duration": 4.675011,
 		"nchannels": 2,
 		"rate": 44100,
 		"type": "mp3",
@@ -94,56 +264,6 @@
 		"keywords": "orchinstsample|brass|trombone|short",
 		"file": "374937__samulis__oldtrombone-g2-trombone_short_g2_v2_1.mp3",
 		"duration": 0.6,
-		"nchannels": 2,
-		"rate": 44100,
-		"type": "mp3",
-		"bitrate": 16
-	},
-	{
-		"id": "374016__samulis__tenor-trombone-sustain-c4-tenortbn_sus_c3_v2_1",
-		"keywords": "orchinstsample|brass|long",
-		"file": "374016__samulis__tenor-trombone-sustain-c4-tenortbn_sus_c3_v2_1.mp3",
-		"duration": 9.769002,
-		"nchannels": 2,
-		"rate": 44100,
-		"type": "mp3",
-		"bitrate": 16
-	},
-	{
-		"id": "374133__samulis__trumpet-straight-mute-sustain-e5-sum_shtrumpet_straightm-sus_f4_v1_rr1",
-		"keywords": "orchinstsample|brass|long",
-		"file": "374133__samulis__trumpet-straight-mute-sustain-e5-sum_shtrumpet_straightm-sus_f4_v1_rr1.mp3",
-		"duration": 8.723991,
-		"nchannels": 2,
-		"rate": 44100,
-		"type": "mp3",
-		"bitrate": 16
-	},
-	{
-		"id": "374152__samulis__trumpet-sustain-f4-sum_shtrumpet_sus_g3_v1_rr1",
-		"keywords": "orchinstsample|brass|long",
-		"file": "374152__samulis__trumpet-sustain-f4-sum_shtrumpet_sus_g3_v1_rr1.mp3",
-		"duration": 16.509002,
-		"nchannels": 2,
-		"rate": 44100,
-		"type": "mp3",
-		"bitrate": 16
-	},
-	{
-		"id": "374174__samulis__trumpet-vibrato-sustain-a4-sum_shtrumpet_susvib_a3_v2_rr1",
-		"keywords": "orchinstsample|brass|long",
-		"file": "374174__samulis__trumpet-vibrato-sustain-a4-sum_shtrumpet_susvib_a3_v2_rr1.mp3",
-		"duration": 4.622993,
-		"nchannels": 2,
-		"rate": 44100,
-		"type": "mp3",
-		"bitrate": 16
-	},
-	{
-		"id": "374267__samulis__tuba-sustain-a3-tuba3_sus_a2_v3_rr1_mid",
-		"keywords": "orchinstsample|brass|long",
-		"file": "374267__samulis__tuba-sustain-a3-tuba3_sus_a2_v3_rr1_mid.mp3",
-		"duration": 4.675011,
 		"nchannels": 2,
 		"rate": 44100,
 		"type": "mp3",

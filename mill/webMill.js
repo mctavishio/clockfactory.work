@@ -83,7 +83,7 @@ let indexhtml = `
 		<li><a href="#videoall">composite video</a></li>
 		<li><a href="#list">net sequences</a></li>
 		<!--<li><a href="#about">about</a></li>-->
-		<li><a href="#thanks">thanks</a></li>
+		<li><a href="#thanks">project support</a></li>
 	</ul>
 </nav>
 <div class="screenreader-text">
@@ -140,7 +140,7 @@ indexhtml = indexhtml + `
 -->
 <article id="thanks">
 	<header>
-		<h1>thanks</h1>
+		<h1>project support</h1>
 	</header>
 	<div class="content">
 	<p>Kathy McTavish was a fiscal year 2023 recipient of a Creative Support for Individuals grant from the Minnesota State Arts Board. This activity was made possible by the voters of Minnesota through a grant from the Minnesota State Arts Board, thanks to a legislative appropriation from the arts and cultural heritage fund.</p>
