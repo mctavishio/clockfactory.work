@@ -106,7 +106,7 @@ module.exports = [
 {id: "piano3b", keywords:"piano|harp|long", file: "piano3b.mp3", duration:73.512993, nchannels:2, rate:44100, type:"mp3", bitrate:16},
 {id: "rider1_a", keywords:"poem", file: "rider1_a.mp3", duration:22.549002, nchannels:2, rate:44100, type:"mp3", bitrate:16},
 {id: "rider1_b", keywords:"poem", file: "rider1_b.mp3", duration:15.678005, nchannels:2, rate:44100, type:"mp3", bitrate:16},
-{id: "rubbedpianoharp0", keywords:"pianoharp|rubbed|scraped", file: "rubbedpianoharp0.mp3", duration:52.929002, nchannels:2, rate:44100, type:"mp3", bitrate:16},
+{id: "rubbedpianoharp0", keywords:"harp|rubbed|scraped", file: "rubbedpianoharp0.mp3", duration:52.929002, nchannels:2, rate:44100, type:"mp3", bitrate:16},
 {id: "scraping1", keywords:"noise|percussion", file: "scraping1.mp3", duration:2.147007, nchannels:2, rate:44100, type:"mp3", bitrate:16},
 {id: "sheila", keywords:"", file: "sheila.mp3", duration:16.722993, nchannels:2, rate:44100, type:"mp3", bitrate:16},
 {id: "sheila1", keywords:"poem", file: "sheila1.mp3", duration:14.895011, nchannels:2, rate:44100, type:"mp3", bitrate:16},

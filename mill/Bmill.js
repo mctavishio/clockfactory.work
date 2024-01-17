@@ -55,10 +55,10 @@ let count=0;
 			elements[z].push({b:[], tag:"line", role:"hline", x,y,z,e,n:count, cx:xgrid[x], cy:ygrid[y], so:1.0, fo:0.0, strokecolor:color, fillcolor:color});
 			color = allcolors[tools.randominteger(0,allcolors.length)];
 			++e;++count;
-			elements[z].push({b:[], tag:"circle", role:"scircle", x,y,z,e, n:count, cx:xgrid[x], cy:ygrid[y], so:1.0, fo:0.0, strokecolor:color, fillcolor:color}); 
+			elements[z].push({b:[], tag:"line", role:"hline", x,y,z,e,n:count, cx:xgrid[x], cy:ygrid[y], so:1.0, fo:0.0, strokecolor:color, fillcolor:color});
 			color = allcolors[tools.randominteger(0,allcolors.length)];
 			++e;++count;
-			elements[z].push({b:[], tag:"line", role:"vline", x,y,z,e,n:count, cx:xgrid[x], cy:ygrid[y], so:1.0, fo:0.0, strokecolor:color, fillcolor:color});
+			elements[z].push({b:[], tag:"circle", role:"fcircle", x,y,z,e, n:count, cx:xgrid[x], cy:ygrid[y], so:1.0, fo:0.0, strokecolor:color, fillcolor:color}); 
 			color = allcolors[tools.randominteger(0,allcolors.length)];
 			++e;++count;
 			elements[z].push({b:[], tag:"circle", role:"scircle", x,y,z,e, n:count, cx:xgrid[x], cy:ygrid[y], so:1.0, fo:0.0, strokecolor:color, fillcolor:color}); 
@@ -137,11 +137,12 @@ let mult = [...new Array(nz).keys()].map(z=>tools.randominteger(5,10)/10).sort( 
 	[...new Array(nticks).keys()].forEach( t => {
 		B.elements[z].forEach( (el,j) => {
 			let bt = {};
-			let sw = tools.randominteger(4,30)/100;
+			let sw = el.role==="scircle" ? tools.randominteger(28,68)/100 : tools.randominteger(2,40)/100;;
 			let sd = el.role==="scircle" ? tools.randominteger(.4,8)/100 : tools.randominteger(.4,14)/100;
-			let r = el.tag==="circle" ? tools.randominteger(8,40)/100 : tools.randominteger(18,90)/100;
+			let r = el.tag==="circle" ? tools.randominteger(18,48)/100 : tools.randominteger(18,60)/100;
+			let cy = el.tag==="line" ? tools.randominteger(0,100)/100 : 0.5;
 			if( t===0 || ischange() || t===nticks-1 ) {
-				bt = { sw:sw*mult[z-1], sd:sd*mult[z-1], r:r*mult[z-1] };
+				bt = { sw:sw*mult[z-1], sd:sd*mult[z-1], r:r*mult[z-1], cy };
 			}
 			else { bt = el.b[t-1]; }
 			el.b[t] = bt;

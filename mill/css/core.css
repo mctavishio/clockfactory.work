@@ -19,7 +19,7 @@
 	/*--warmwhite: #fcfbe3;  rgb(252,252,227),hsl(60,81%,94%),cmyk(0,0,10,1)*/
 	--warmlightwhite:#fdfdf3; /* panatone sort of "P 1-9 C"rgb(253,253,243),hsl(60,71.4%,97.3%),cmyk(0,0,4,1)*/
 	--warmlightwhiteveil: rgba(253,253,243,0.8);
-	--veilwarmwhite: rgba(252, 251, 227, 0.4);
+	--veilwarmwhite: rgba(252, 251, 227, 0.8);
 	--veilwarmblack: rgba(25, 25, 24, 0.4);
 	--richblack: #010203;
 	--richgray1: #2a2a2b;
@@ -55,8 +55,8 @@
 	--oldbook: 'Palatino Linotype', 'Book Antiqua', Palatino, 'American Typewriter', 'Times New Roman', serif;
 	/*function*/
 	--daycolor: var(--warmblack);
-	--daybg: var(--warmwhite);
-	--dayveilbg: var(--veilwarmwhite);
+	--daybg: var(--warmlightwhite);
+	--dayveilbg: var(--warmlightwhiteveil);
 	--nightcolor: var(--warmlightwhite);
 	--nightbg: var(--warmblack);
 	--nightveilbg: var(--veilwarmblack);
@@ -413,7 +413,7 @@ h5 {
 	font-family: var(--monospace_zeroslash);
 }
 hr {
-	color: var(--warmlightwhite);
+	color: var(--corecolor);
 }
 .flexcontainer {
 	display: flex; /*or inline-flex*/

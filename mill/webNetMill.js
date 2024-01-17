@@ -2,19 +2,19 @@ const fs = require("fs");
 const poemfile = `./poems.js`;
 const bookfile = `./book.js`;
 const tools = require("./tools.js");
-const mills = require("./mills.js").reverse();
+const mills = require("./mills.js");
 const dt = new Date();
 const timestamp = dt.getTime();
 const datetime = dt.toDateString();
-const description = "code art ::: algorithmic clock patterns";
-const rooturl = "https://clock.work";
+const description = "code art ::: algorithmic net patterns";
+const rooturl = "https://netfactory.work";
 const gsurl = "https://storage.googleapis.com/clockfactory";
 const authorurl = "https://mctavish.work";
 const chosenmill = mills[tools.randominteger(0,mills.length)];
 let indexhtml = `
 <html>
 <head>
-	<title>clock factory</title>
+	<title>net factory</title>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
 	<meta name="description" content="${description}"/>
@@ -27,7 +27,7 @@ let indexhtml = `
 		{
 			"@context": "http://schema.org",
 			"@type": "WebPage",
-			"name": "clock factory",
+			"name": "net factory",
 			"breadcrumb": "core text",
 			"url": "${rooturl}",
 			"description": "${description}",
@@ -40,38 +40,33 @@ let indexhtml = `
 
 	<link rel="stylesheet" media="screen" href="css/core.css"/>
 	<style>
-	:root {
-		--corecolor: var(--daycolor);
-	  	--corebg: var(--daybg);
-	  	--coreveilbg: var(--dayveilbg); 
-	}
 	html {
 		background-color: var(--warmblack);
 	}
 	body {
 		background-image: url("${gsurl}/${mills[0]}/poster0000_${mills[0].substring(4)}.png"); 
+		background-size:cover; background-repeat: no-repeat;
 		background-attachment: fixed;
-		background-size: auto 100%;
+		background-size: cover;
 		background-color:var(--warmblack);
 		border-left: solid;
-		border-left-width: 6px;
-		border-left-color: var(--warmblack);
-		border-right: solid;
-		border-right-width: 6px;
-		border-right-color: var(--warmgray);
-		background-color: var(--corebg);
+ 		border-left-width: 6px;
+ 		border-left-color: var(--warmblack);
+ 		border-right: solid;
+ 		border-right-width: 6px;
+ 		border-right-color: var(--warmlightwhite);
 	}
 	h5 {
-		color: var(--warmblack);
-	}
+ 		color: var(--warmblack);
+ 	}
 	main {
 		border-left: solid;
-		border-left-width: 6px;
-		border-left-color: var(--warmblack);
-		border-right: solid;
-		border-right-width: 6px;
-		border-right-color: var(--warmblack);
-		background-color: var(--corebg);
+ 		border-left-width: 6px;
+ 		border-left-color: var(--warmlightwhite);
+ 		border-right: solid;
+ 		border-right-width: 6px;
+ 		border-right-color: var(--warmblack);
+		background-color:var(--gray);
 	}
 	</style>
 </head>
@@ -79,14 +74,14 @@ let indexhtml = `
 <div id="mainflex">
 <main class="expand narrow" id="top">
 <header>
-	<h1>clock factory</h1>
+	<h1>net factory</h1>
 	<h2>compiled ::: <span class="small">${datetime}</span></h2>
 </header>
 <nav>
 	<ul>
 		<li><a href="https://mctavish.work/index.html" id="homelink">go to mctavish portfolio</a></li>
 		<li><a href="#videoall">composite video</a></li>
-		<li><a href="#list">clock sequences</a></li>
+		<li><a href="#list">net sequences</a></li>
 		<!--<li><a href="#about">about</a></li>-->
 		<li><a href="#thanks">project support</a></li>
 	</ul>
@@ -101,7 +96,7 @@ let indexhtml = `
 	<div id="content">
 	<figure>
 	<div class="vimeowrapper16x9" >
-		<iframe src="https://player.vimeo.com/video/903856325?title=0&amp;byline=0&amp;portrait=0" width="600" height="338"frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+		<iframe src="https://player.vimeo.com/video/902778599?title=0&amp;byline=0&amp;portrait=0" width="600" height="338"frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 	</div>
 	</figure>
 	</div>
@@ -109,17 +104,14 @@ let indexhtml = `
 
 <article id="list">
 	<header>
-		<h1>clock sequences</h1>
+		<h1>net sequences</h1>
 	</header>
 	<div class="content">
-		<p>These are a series of samples/experiments that can be expanded
-		into longer single-channel or multi-channel
-		works.</p>
-	<h5>digital samples</h5>
+ 	<h5>digital samples</h5>
 	<ul>`
 indexhtml = indexhtml + mills.map( name=>name.slice(4) ).map( name=>{
 	return	`
-		<li><a href="index${name}.html">clock sequence ${name}</a></li>`;
+		<li><a href="index${name}.html">net sequence ${name}</a></li>`;
 }).join("");
 indexhtml = indexhtml + ` 
 	</ul>
@@ -152,8 +144,9 @@ indexhtml = indexhtml + `
 	</header>
 	<div class="content">
 	<p>Kathy McTavish was a fiscal year 2023 recipient of a Creative Support for Individuals grant from the Minnesota State Arts Board. This activity was made possible by the voters of Minnesota through a grant from the Minnesota State Arts Board, thanks to a legislative appropriation from the arts and cultural heritage fund.</p>
-	<p><a href="https://quiltfactory.work">the quilt factory</p>
-	<p>see also: <a href="https://netfactory.work">the net factory</p>
+	<p>This is an offshoot of research for:</p>
+	<p><a href="https://quiltfactory.work">the quilt factory</a></p>
+	<p>see also: <a href="https://clockfactory.work">the clock factory</a></p>
 	</div>
 </article>
 </main>
@@ -179,7 +172,7 @@ mills.map( mill=> {
 			`poster0002_${s}.png`,
 			`poster0004_${s}.png`,
 		],
-		title: `clock ${s}`,
+		title: `net ${s}`,
 		subtitle: `${year}.${month}.${date} ${hour}:${minute}`, 
 		url: `index${s}.html`,
 	}
@@ -212,31 +205,26 @@ mills.map( mill=> {
 
 	<link rel="stylesheet" media="screen" href="css/core.css"/>
 	<style>
-	:root {
-		--corecolor: var(--daycolor);
-	  	--corebg: var(--daybg);
-	  	--coreveilbg: var(--dayveilbg); 
-	}
 	body {
 		border-left: solid;
-		border-left-width: 6px;
-		border-left-color: var(--warmblack);
-		border-right: solid;
-		border-right-width: 6px;
-		border-right-color: var(--warmlightwhite);
-		background-color: var(--corebg);
+ 		border-left-width: 6px;
+ 		border-left-color: var(--warmblack);
+ 		border-right: solid;
+ 		border-right-width: 6px;
+ 		border-right-color: var(--warmlightwhite);
 		background-image: url("${gsurl}/${mill.name}/${mill.posters[tools.randominteger(0,3)]}"); 
+		background-size:cover; background-repeat: no-repeat;
 		background-attachment: fixed;
-		background-size: auto 100%;
+		background-size: cover;
 		}
 	main {
 		border-left: solid;
-		border-left-width: 6px;
-		border-left-color: var(--warmblack);
-		border-right: solid;
-		border-right-width: 6px;
-		border-right-color: var(--warmblack);
-		background-color: var(--corebg);
+ 		border-left-width: 6px;
+ 		border-left-color: var(--warmlightwhite);
+ 		border-right: solid;
+ 		border-right-width: 6px;
+ 		border-right-color: var(--warmblack);
+		background-color:var(--gray);
 	}
 	</style>
 </head>
@@ -247,12 +235,12 @@ mills.map( mill=> {
 <main class="expand narrow" id="top">`;
 	html = html + `
 <header>
-	<h1>clock sequence</h1>
+	<h1>net sequence</h1>
 	<h2>created ::: ${mill.datetime}</h2>
 </header>
 <nav>
 	<ul>
-		<li><a href="index.html" id="indexlink">back to clock index</a></li>
+		<li><a href="index.html" id="indexlink">back to net index</a></li>
 		<li><a href="https://mctavish.work/index.html" id="homelink">go to mctavish portfolio</a></li>
 		<li><a href="#audio">audio tracks</a></li>
 		<li><a href="#books">books</a></li>
