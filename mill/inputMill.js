@@ -65,9 +65,9 @@ const colors = colorsets.warmbw;
 const colorweights = [
 	[pigments.warmlightwhite,18],
 	[pigments.warmwhite,0],
-	[pigments.warmblack,16],
+	[pigments.warmblack,1],
 	[pigments.warmgray,0],
-	[pigments.gray,0],
+	[pigments.gray,12],
 	[pigments.warmlightgray,0],
 	[pigments.red,1],
 	[pigments.yellow,1],
@@ -107,10 +107,17 @@ const stringsnotpluck2 = sounddata.filter(f=>f.keywords.includes("strings") && !
 const brass = sounddata.filter(f=>f.keywords.includes("brass")).map(f=> {
 	return [f.id,1,chords[0]]
 });  
+const afterring = sounddata.filter(f=>f.keywords.includes("afterring")).map(f=> {
+	return [f.id,1,chords[1]]
+});  
+const  percussion = sounddata.filter(f=>f.keywords.includes("percussion")).map(f=> {
+	return [f.id,1,chords[0]]
+});  
 const score = [
-	{gain:0.3,padmin:0,padmax:300,nthreads:2,list:stringsnotpluck},
-	{gain:0.3,padmin:0,padmax:300,nthreads:1,list:brass},
-	{gain:0.3,padmin:0,padmax:300,nthreads:1,list:stringsnotpluck2},
+	{gain:0.3,padmin:0,padmax:300,nthreads:1,list:percussion},
+	{gain:0.3,padmin:0,padmax:300,nthreads:1,list:percussion},
+	{gain:0.3,padmin:0,padmax:300,nthreads:1,list:percussion},
+	{gain:0.3,padmin:0,padmax:300,nthreads:1,list:percussion},
 ];
 let soundids = [];
 const sounds = score.reduce( (acc,part) => {
