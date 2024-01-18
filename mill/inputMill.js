@@ -10,10 +10,10 @@ let dt = new Date();
 let timestamp = dt.getTime();
 let datetime = dt.toDateString();
 
-const title = "clock factory";
+const title = "noise factory";
 const subtitle = datetime;
 const description = "algorithmic sound & drawings";
-const rooturl = "https://clockfactory.work";
+const rooturl = "https://noisefactory.work";
 const authorurl = "https://mctavish.work/index.html";
 const author= "mctavish";
 const copyright = "Copyright ©2024 mctavish<br/>";
@@ -65,11 +65,11 @@ const colors = colorsets.warmbw;
 const colorweights = [
 	[pigments.warmlightwhite,12],
 	[pigments.warmwhite,0],
-	[pigments.warmblack,3],
+	[pigments.warmblack,9],
 	[pigments.warmgray,0],
-	[pigments.gray,8],
+	[pigments.gray,0],
 	[pigments.warmlightgray,0],
-	[pigments.red,1],
+	[pigments.red,0],
 	[pigments.yellow,1],
 	[pigments.blue,0],
 ];
@@ -81,13 +81,13 @@ const allcolors = colorweights.flatMap(wx=>{
 const nx = 3;
 const ny = 3;
 //nz = nlayers
-const nz = 3;
+const nz = 2;
 
-//const xgrid = [...new Array(nx).keys()].map( j=>Math.floor(100*j/(nx-1))/100 );
-//const ygrid = [...new Array(ny).keys()].map( j=>Math.floor(100*j/(ny-1))/100 );
+const xgrid = [...new Array(nx).keys()].map( j=>Math.floor(100*j/(nx-1))/100 );
+const ygrid = [...new Array(ny).keys()].map( j=>Math.floor(100*j/(ny-1))/100 );
 //const ygrid = [...new Array(n).keys()].map(j=>tools.randominteger(0,100)/100).sort( (a,b) => { return a - b } );
-const xgrid = [...new Array(nx).keys()].map( x=>0.5 );
-const ygrid = [...new Array(ny).keys()].map( y=>0.5 );
+//const xgrid = [...new Array(nx).keys()].map( x=>0.5 );
+//const ygrid = [...new Array(ny).keys()].map( y=>0.5 );
 console.log(`inputMill:xgrid=${JSON.stringify(xgrid)}`);
 
 const chords = [
@@ -112,16 +112,19 @@ const train = sounddata.filter(f=>f.keywords.includes("train")).map(f=> {
 const radio = sounddata.filter(f=>f.keywords.includes("radio")).map(f=> {
 	return [f.id,1,chords[0]]
 });  
-const noise = sounddata.filter(f=>f.keywords.includes("noise")).map(f=> {
+const noise = sounddata.filter(f=>!f.id.includes("coffeepot") && f.keywords.includes("noise")).map(f=> {
 	return [f.id,1,chords[0]]
 });  
-const noise1 = sounddata.filter(f=>f.keywords.includes("noise")).map(f=> {
+const noise1 = sounddata.filter(f=>!f.id.includes("coffeepot") && f.keywords.includes("noise")).map(f=> {
 	return [f.id,1,chords[1]]
 });  
-const noise2 = sounddata.filter(f=>f.keywords.includes("noise")).map(f=> {
+const noise2 = sounddata.filter(f=>!f.id.includes("coffeepot") && f.keywords.includes("noise")).map(f=> {
 	return [f.id,1,chords[2]]
 });  
 const brass = sounddata.filter(f=>f.keywords.includes("brass")).map(f=> {
+	return [f.id,1,chords[0]]
+});  
+const percussion = sounddata.filter(f=>!f.id.includes("typewriter") && f.keywords.includes("percussion")).map(f=> {
 	return [f.id,1,chords[0]]
 });  
 const bells = sounddata.filter(f=>f.keywords.includes("bell")).map(f=> {
@@ -130,16 +133,22 @@ const bells = sounddata.filter(f=>f.keywords.includes("bell")).map(f=> {
 const afterring = sounddata.filter(f=>f.keywords.includes("afterring")).map(f=> {
 	return [f.id,1,chords[1]]
 });  
+const bowedmetal = sounddata.filter(f=>f.keywords.includes("bowedmetal")).map(f=> {
+	return [f.id,1,chords[0]]
+});  
 const  reed = sounddata.filter(f=>f.keywords.includes("reed")).map(f=> {
 	return [f.id,1,chords[0]]
 });  
+const  birdcry = sounddata.filter(f=>f.id.includes("birdcry")).map(f=> {
+	return [f.id,1,chords[0]]
+});  
 const score = [
-	{gain:0.4,padmin:0,padmax:300,nthreads:2,list:reed},
-	{gain:0.4,padmin:0,padmax:100,nthreads:2,list:radio},
-	{gain:0.4,padmin:0,padmax:100,nthreads:2,list:train},
-	{gain:0.4,padmin:0,padmax:300,nthreads:2,list:noise2},
-	{gain:0.4,padmin:0,padmax:300,nthreads:2,list:noise1},
+	{gain:0.5,padmin:0,padmax:400,nthreads:2,list:train},
+	{gain:0.5,padmin:0,padmax:400,nthreads:2,list:percussion},
+	{gain:0.5,padmin:0,padmax:400,nthreads:3,list:radio},
+	{gain:0.5,padmin:0,padmax:100,delay:.6, duration: .9, nthreads:2,list:birdcry},
 	{gain:0.4,padmin:0,padmax:300,nthreads:2,list:noise},
+	{gain:0.4,padmin:0,padmax:300,nthreads:2,list:noise2},
 ];
 let soundids = [];
 const sounds = score.reduce( (acc,part) => {

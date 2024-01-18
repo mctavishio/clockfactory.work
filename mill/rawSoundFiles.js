@@ -64,7 +64,7 @@ module.exports = [
 {id: "clarinetnotes_h", keywords:"z|reed|clarinet|clarinetnotes", file: "clarinetnotes_h.mp3", duration:17.350000, nchannels:2, rate:44100, type:"mp3", bitrate:16},
 {id: "clarinetnotes_i", keywords:"z|reed|clarinet|clarinetnotes", file: "clarinetnotes_i.mp3", duration:21.399002, nchannels:2, rate:44100, type:"mp3", bitrate:16},
 {id: "cmpb20200708_5", keywords:"mct|vox", file: "cmpb20200708_5.mp3", duration:6.743991, nchannels:2, rate:44100, type:"mp3", bitrate:16},
-{id: "coffepot1eminor", keywords:"noise|coffeepot", file: "coffepot1eminor.mp3", duration:72.886009, nchannels:2, rate:44100, type:"mp3", bitrate:16},
+//{id: "coffepot1eminor", keywords:"noise|coffeepot", file: "coffepot1eminor.mp3", duration:72.886009, nchannels:2, rate:44100, type:"mp3", bitrate:16},
 {id: "cowbell", keywords:"beat|percussion", file: "cowbell.mp3", duration:0.235011, nchannels:2, rate:44100, type:"mp3", bitrate:16},
 {id: "crow1", keywords:"bird|crow", file: "crow1.mp3", duration:11.811995, nchannels:2, rate:44100, type:"mp3", bitrate:16},
 {id: "fan1", keywords:"noise|fan", file: "fan1.mp3", duration:8.155011, nchannels:2, rate:44100, type:"mp3", bitrate:16},

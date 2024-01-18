@@ -29,8 +29,8 @@ const m = nx*ny*nz;
 const ne = (nx*2+ny)*nz;
 const n = nmin;
 //console.log(`colorseq = ${JSON.stringify(colorseq)}`);
-const xgrid = input.xgrid;
-const ygrid = input.ygrid;
+const xgrid = tools.shuffle(input.xgrid);
+const ygrid = tools.shuffle(input.ygrid);
 console.log(`xgrid=${JSON.stringify(xgrid)}`);
 //const xgrid = tools.shuffle(input.xgrid);
 //const ygrid = tools.shuffle(input.ygrid);
@@ -52,29 +52,45 @@ let count=0;
 			let cy = ygrid[y];
 			let color = allcolors[tools.randominteger(0,allcolors.length)];
 			++e;++count;
-			elements[z].push({b:[], tag:"line", role:"hline", x,y,z,e,n:count, cx:xgrid[x], cy:ygrid[y], so:1.0, fo:0.0, strokecolor:color, fillcolor:color});
+			elements[z].push({b:[], tag:"line", role:"vline", x,y,z,e,n:count, cx:xgrid[x], cy:ygrid[y], so:1.0, fo:0.0, strokecolor:color, fillcolor:color});
+			color = allcolors[tools.randominteger(0,allcolors.length)];
+			//if(z===nz) {color=pigments.warmblack}
+			++e;++count;
+			elements[z].push({tag:"rect",role:"rect",b:[],n:count,block:0,x,y,z,e,cx:0,cy:0,w:1,h:1,sw:0.01,sf:0,sd:4,so:1,fo:0,strokecolor:color,fillcolor:pigments.warmlightwhite});
 			color = allcolors[tools.randominteger(0,allcolors.length)];
 			++e;++count;
-			elements[z].push({b:[], tag:"line", role:"hline", x,y,z,e,n:count, cx:xgrid[x], cy:ygrid[y], so:1.0, fo:0.0, strokecolor:color, fillcolor:color});
+			elements[z].push({b:[], tag:"circle", role:"fcircle", x,y,z,e, n:count, cx:0.5, cy:0.5, so:1.0, fo:0.0, strokecolor:color, fillcolor:color}); 
 			color = allcolors[tools.randominteger(0,allcolors.length)];
 			++e;++count;
-			elements[z].push({b:[], tag:"circle", role:"fcircle", x,y,z,e, n:count, cx:xgrid[x], cy:ygrid[y], so:1.0, fo:0.0, strokecolor:color, fillcolor:color}); 
+			elements[z].push({b:[], tag:"line", role:"vline", x,y,z,e,n:count, cx:xgrid[x], cy:ygrid[y], so:1.0, fo:0.0, strokecolor:color, fillcolor:color});
+			/*
+			color = allcolors[tools.randominteger(0,allcolors.length)];
+			++e;++count;
+			elements[z].push({b:[], tag:"circle", role:"scircle", x,y,z,e, n:count, cx:0.5, cy:0.5, so:1.0, fo:0.0, strokecolor:color, fillcolor:color}); 
+			*/
+			color = allcolors[tools.randominteger(0,allcolors.length)];
+			//if(z===nz) {color=pigments.warmblack}
+			++e;++count;
+			elements[z].push({tag:"rect",role:"rect",b:[],n:count,block:0,x,y,z,e,cx:.025,cy:.025,w:0.95,h:0.95,sw:0.01,sf:0,sd:4,so:1,fo:0,strokecolor:color,fillcolor:pigments.warmlightwhite});
+			/*
 			color = allcolors[tools.randominteger(0,allcolors.length)];
 			++e;++count;
 			elements[z].push({b:[], tag:"circle", role:"scircle", x,y,z,e, n:count, cx:xgrid[x], cy:ygrid[y], so:1.0, fo:0.0, strokecolor:color, fillcolor:color}); 
 			//++e;++count;
+			*/
 		});
 	});
 });
+/*
 let z = nz+1;
 ++count;
 elements[z] = [
-	{b:[], tag:"circle", role:"fcircle", r:.08, x:0,y:0,z,e:0, n:count, cx:xgrid[0], cy:ygrid[0], so:0.0, fo:1.0, strokecolor:pigments.warmlightwhite, fillcolor:pigments.warmlightwhite}, 
-	{b:[], tag:"circle", role:"fcircle", r:.05, x:0,y:0,z,e:1, n:count, cx:xgrid[0], cy:ygrid[0], so:0.0, fo:1.0, strokecolor:pigments.warmblack, fillcolor:pigments.warmblack}, 
-	{b:[], tag:"circle", role:"fcircle", r:.03, x:0,y:0,z,e:2, n:count, cx:xgrid[0], cy:ygrid[0], so:0.0, fo:1.0, strokecolor:pigments.warmlightwhite, fillcolor:pigments.warmlightwhite}, 
-	{b:[], tag:"circle", role:"fcircle", r:.01, x:0,y:0,z,e:3, n:count, cx:xgrid[0], cy:ygrid[0], so:0.0, fo:1.0, strokecolor:pigments.red, fillcolor:pigments.warmblack}, 
+	{b:[], tag:"circle", role:"scircle", r:.08, sw:0.01, x:0,y:0,z,e:0, n:count, cx:0.5, cy:0.5, so:0.0, fo:1.0, strokecolor:pigments.warmlightwhite, fillcolor:pigments.warmlightwhite}, 
+	{b:[], tag:"circle", role:"scircle", r:.05, sw:0.01, x:0,y:0,z,e:1, n:count, cx:0.5, cy:0.5, so:0.0, fo:1.0, strokecolor:pigments.warmblack, fillcolor:pigments.warmblack}, 
+	{b:[], tag:"circle", role:"scircle", r:.03, sw:0.01, x:0,y:0,z,e:2, n:count, cx:0.5, cy:0.5, so:0.0, fo:1.0, strokecolor:pigments.warmlightwhite, fillcolor:pigments.warmlightwhite}, 
+	{b:[], tag:"circle", role:"scircle", r:.01, sw:0.01, x:0,y:0,z,e:3, n:count, cx:0.5, cy:0.5, so:0.0, fo:1.0, strokecolor:pigments.red, fillcolor:pigments.warmblack}, 
 ];
-
+*/
 //console.log(`elements = ${JSON.stringify(elements)}`);
 
 let B = {
@@ -115,7 +131,7 @@ const ischange = () => { return tools.randominteger(0,100) > 8 }
 		});
 	});
 });
-
+/*
 [nz+1].forEach( z => {
 	[...new Array(elements[z].length).keys()].forEach( n => { 
 		B.elements[z][n].b = [...new Array(nticks).keys()].map( j => {
@@ -129,20 +145,25 @@ const ischange = () => { return tools.randominteger(0,100) > 8 }
 		});
 	});
 });
+*/
 
 /* layers 1&above
  * */
-let mult = [...new Array(nz).keys()].map(z=>tools.randominteger(5,10)/10).sort( (a, b) => b-a );
+let mult = [...new Array(nz).keys()].map(z=>tools.randominteger(5,9)/10).sort( (a, b) => b-a );
 [...new Array(nz).keys()].map(z=>z+1).forEach( z => { 
 	[...new Array(nticks).keys()].forEach( t => {
 		B.elements[z].forEach( (el,j) => {
 			let bt = {};
-			let sw = el.role==="scircle" ? tools.randominteger(28,68)/100 : tools.randominteger(2,40)/100;;
-			let sd = el.role==="scircle" ? tools.randominteger(.4,8)/100 : tools.randominteger(.4,14)/100;
-			let r = el.tag==="circle" ? tools.randominteger(18,48)/100 : tools.randominteger(18,60)/100;
-			let cy = el.tag==="line" ? tools.randominteger(0,100)/100 : 0.5;
+			let sw = el.role==="scircle" ? tools.randominteger(28,68)/100 : tools.randominteger(4,120)/100;
+			//let sw = 1.2;
+			let sf = 0;
+			let sd = el.role==="scircle" ? tools.randominteger(.4,9)/100 : tools.randominteger(.2,9)/100;
+			if(el.tag==="rect" && z===nz) {sw = tools.randominteger(1,9)/100; sf=tools.randominteger(1,280)/10; sd=tools.randominteger(1,40)/10}
+			
+			let r = el.tag==="circle" ? tools.randominteger(4,48)/100 : tools.randominteger(18,60)/100;
+			//let cy = el.tag==="line" ? tools.randominteger(0,100)/100 : 0.5;
 			if( t===0 || ischange() || t===nticks-1 ) {
-				bt = { sw:sw*mult[z-1], sd:sd*mult[z-1], r:r*mult[z-1], cy };
+				bt = { sw:sw*mult[z-1], sd:sd*mult[z-1], r:r*mult[z-1],sf };
 			}
 			else { bt = el.b[t-1]; }
 			el.b[t] = bt;
