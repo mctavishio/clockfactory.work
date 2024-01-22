@@ -10,10 +10,10 @@ let dt = new Date();
 let timestamp = dt.getTime();
 let datetime = dt.toDateString();
 
-const title = "noise factory";
+const title = "cyclone";
 const subtitle = datetime;
 const description = "algorithmic sound & drawings";
-const rooturl = "https://noisefactory.work";
+const rooturl = "https://cyclone.work";
 const authorurl = "https://mctavish.work/index.html";
 const author= "mctavish";
 const copyright = "Copyright ©2024 mctavish<br/>";
@@ -67,10 +67,10 @@ const colorweights = [
 	[pigments.warmwhite,0],
 	[pigments.warmblack,9],
 	[pigments.warmgray,0],
-	[pigments.gray,0],
+	[pigments.gray,2],
 	[pigments.warmlightgray,0],
-	[pigments.red,0],
-	[pigments.yellow,1],
+	[pigments.red,1],
+	[pigments.yellow,2],
 	[pigments.blue,0],
 ];
 
@@ -139,16 +139,30 @@ const bowedmetal = sounddata.filter(f=>f.keywords.includes("bowedmetal")).map(f=
 const  reed = sounddata.filter(f=>f.keywords.includes("reed")).map(f=> {
 	return [f.id,1,chords[0]]
 });  
+const  cry = sounddata.filter(f=>f.keywords.includes("cry")).map(f=> {
+	return [f.id,1,chords[0]]
+});  
+const  bird = sounddata.filter(f=>f.id.includes("bird")).map(f=> {
+	return [f.id,1,chords[0]]
+});  
 const  birdcry = sounddata.filter(f=>f.id.includes("birdcry")).map(f=> {
 	return [f.id,1,chords[0]]
 });  
+const tornadosiren = sounddata.filter(f=>f.id.includes("tornadosiren")).map(f=> {
+	return [f.id,1,chords[1]]
+});  
+const pianoharp = sounddata.filter(f=>f.id.includes("pianoharp")).map(f=> {
+	return [f.id,1,chords[1]]
+});  
 const score = [
-	{gain:0.5,padmin:0,padmax:400,nthreads:2,list:train},
-	{gain:0.5,padmin:0,padmax:400,nthreads:2,list:percussion},
+	{gain:0.5,padmin:0,padmax:400,nthreads:2,list:cry},
+	{gain:0.5,padmin:0,padmax:400,nthreads:2,list:afterring},
+	{gain:0.5,padmin:0,padmax:400,nthreads:4,list:tornadosiren},
+	{gain:0.3,padmin:0,padmax:500,nthreads:2,list:pianoharp},
 	{gain:0.5,padmin:0,padmax:400,nthreads:3,list:radio},
 	{gain:0.5,padmin:0,padmax:100,delay:.6, duration: .9, nthreads:2,list:birdcry},
-	{gain:0.4,padmin:0,padmax:300,nthreads:2,list:noise},
-	{gain:0.4,padmin:0,padmax:300,nthreads:2,list:noise2},
+	{gain:0.4,padmin:0,padmax:300,nthreads:2,list:reed},
+	{gain:0.4,padmin:0,padmax:300,nthreads:2,list:bowedmetal},
 ];
 let soundids = [];
 const sounds = score.reduce( (acc,part) => {
@@ -169,7 +183,8 @@ const input = {
 	score,
 	nx, ny, nz,
 	xgrid, ygrid,
-	pigments, colorsets, rawcolorsets,
+	//pigments, colorsets, rawcolorsets,
+	pigments,
 	colors, spicecolors, allcolors,
 	bookunits: "in",
 	bookwidth: 8,

@@ -59,15 +59,15 @@ let count=0;
 			elements[z].push({tag:"rect",role:"rect",b:[],n:count,block:0,x,y,z,e,cx:0,cy:0,w:1,h:1,sw:0.01,sf:0,sd:4,so:1,fo:0,strokecolor:color,fillcolor:pigments.warmlightwhite});
 			color = allcolors[tools.randominteger(0,allcolors.length)];
 			++e;++count;
-			elements[z].push({b:[], tag:"circle", role:"fcircle", x,y,z,e, n:count, cx:0.5, cy:0.5, so:1.0, fo:0.0, strokecolor:color, fillcolor:color}); 
-			color = allcolors[tools.randominteger(0,allcolors.length)];
-			++e;++count;
 			elements[z].push({b:[], tag:"line", role:"vline", x,y,z,e,n:count, cx:xgrid[x], cy:ygrid[y], so:1.0, fo:0.0, strokecolor:color, fillcolor:color});
-			/*
 			color = allcolors[tools.randominteger(0,allcolors.length)];
 			++e;++count;
-			elements[z].push({b:[], tag:"circle", role:"scircle", x,y,z,e, n:count, cx:0.5, cy:0.5, so:1.0, fo:0.0, strokecolor:color, fillcolor:color}); 
-			*/
+			elements[z].push({b:[], tag:"ellipse", role:"ellipse", x,y,z,e, n:count, cx:0.5, cy:0.5, so:1.0, fo:0.0, strokecolor:color, fillcolor:color}); 
+			
+			color = allcolors[tools.randominteger(0,allcolors.length)];
+			++e;++count;
+			elements[z].push({b:[], tag:"circle", role:"fcircle", x,y,z,e, n:count, cx:0.5, cy:0.5, so:0.0, fo:1.0, strokecolor:color, fillcolor:color}); 
+			
 			color = allcolors[tools.randominteger(0,allcolors.length)];
 			//if(z===nz) {color=pigments.warmblack}
 			++e;++count;
@@ -157,10 +157,10 @@ let mult = [...new Array(nz).keys()].map(z=>tools.randominteger(5,9)/10).sort( (
 			let sw = el.role==="scircle" ? tools.randominteger(28,68)/100 : tools.randominteger(4,120)/100;
 			//let sw = 1.2;
 			let sf = 0;
-			let sd = el.role==="scircle" ? tools.randominteger(.4,9)/100 : tools.randominteger(.2,9)/100;
+			let sd = el.role==="fcircle" ? tools.randominteger(.4,9)/100 : tools.randominteger(.2,9)/100;
 			if(el.tag==="rect" && z===nz) {sw = tools.randominteger(1,9)/100; sf=tools.randominteger(1,280)/10; sd=tools.randominteger(1,40)/10}
 			
-			let r = el.tag==="circle" ? tools.randominteger(4,48)/100 : tools.randominteger(18,60)/100;
+			let r = el.tag==="circle" ? tools.randominteger(4,38)/100 : tools.randominteger(18,60)/100;
 			//let cy = el.tag==="line" ? tools.randominteger(0,100)/100 : 0.5;
 			if( t===0 || ischange() || t===nticks-1 ) {
 				bt = { sw:sw*mult[z-1], sd:sd*mult[z-1], r:r*mult[z-1],sf };

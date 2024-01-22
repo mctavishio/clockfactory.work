@@ -17,41 +17,6 @@ const svgheight = book.bookheight*book.pixelsperunit;
 let dt = new Date();
 let timestamp = dt.getTime();
 let datetime = dt.toDateString();
-const generatefunctions = {
-	generateTOC: () => {
-	let divstr = `
-	<div id="toc"><nav>`;
-	divstr = divstr + book.sections.filter(section=>{
-		let b=true;
-		if(section.cssclasses) {
-			if(section.cssclasses.includes("notoc")) b=false;
-		}
-		return b
-	}).reduce( (sectionstr,section,s) => {
-	if(section.title) {
-		sectionstr = sectionstr + `
-		<div class="sectionlink"><a id="link_${section.id}" href="#${section.id}">${section.title}</a></div>`;
-	}
-	if(section.poems) {
-		sectionstr = sectionstr + `
-		<ul id="list_${section.id}">`
-		sectionstr = sectionstr + section.poems.reduce( (poemstr,poemid,p) => {
-			//console.log(`poemid=${poemid}`);
-			let poem = poems.filter(poem=>poem.id===poemid)[0];
-			poemstr = poemstr + `<li><a id="link_${poem.id}" href="#${poem.id}">${poem.title}</a></li>`;
-			return poemstr;
-		}, "");
-		sectionstr = sectionstr + `
-		</ul>`
-	}
-	return sectionstr;
-}, "");
-
-	divstr = divstr + `
-	</nav></div>`;
-	return divstr;
-}
-}
 let head = `
 <head>
 	<title>${book.title}</title>
@@ -86,16 +51,25 @@ let head = `
 	  gtag('js', new Date());
 	  gtag('config', 'G-0989MECNZV');
 	</script>
-	<link rel="stylesheet" media="screen" href="css/bookweb.css"/>
+	<link rel="stylesheet" media="screen" href="css/core.css"/>
 	<link rel="stylesheet" media="print" href="css/print.css"/>
 	<style>
 	:root {
+		--corecolor: var(--daycolor);
+	  	--corebg: var(--daybg);
+	  	--coreveilbg: var(--dayveilbg);
 		--margin:${margin};
 		--margingutter:${margingutter};
 		--width:${width};
 		--height:${height};
 		--innerwidth: ${innerwidth};
 		--innerheight: ${innerheight};
+	}
+	body {
+		background-color: var(--corecolor);
+	}
+	main {
+		background-color: var(--corebg);
 	}
 	@page {
 		--margin:${margin};
@@ -105,39 +79,16 @@ let head = `
 		--innerheight: ${innerheight};
 		margin: var(--margin);
 		size: var(--width) var(--height);
-		}
+	}
 	</style>
 	<script src=""></script>
 </head>
 `;
 
 let html = `<html>${head}
-<body class="illustratedbook" >
-<main id="top">`;
-/*if(book.otherbooks) {
-html = html + ` 
-<section class="prelude num0 pagenonumbers notoc noweb" id="prelude">
-<header>
-	<h1>${book.title}</h1>
-</header>
-<article id="preludeotherbooks" class="lowertopmargin">
-<header>
-	<h1>Other books by ${book.author}</h1>
-</header>`;
-let otherbookstr = book.otherbooks.filter( b => {
-	//console.log(`book ${b} =? title ${book.title}`);
-	return b!==book.title; 
-}).reduce( (str,book,j) => {
-	return str + `<i>${book}</i><br/>`
-},"");
-html = html + `
-<p>
-${otherbookstr}
-</p>
-</article>
-</section>
-`;
-}*/
+<body class="film notext">
+<div id="mainflex">
+<main class="expand wide" id="top">`;
 html = html + `
 <div class="blank"></div>
 <header>
@@ -145,35 +96,9 @@ html = html + `
 	<h2>${book.subtitle}</h2>
 	<h3 id="author">${book.author}</h3>
 	<h4 id="publisher">${book.publisher}</h4>
-</header>`
-html = html + book.sections.reduce( (sectionstr,section,s) => {
-	//console.log(`section = ${JSON.stringify(section)}`);
-	let cssstr = section.cssclasses ? section.cssclasses.join(" ") : "";
-	if(section.id!=="sectiontoc") {
-	sectionstr = sectionstr + `
-<section class="interior num${s+1} ${cssstr}" id="${section.id}">`;
-	}
-	else {
-	sectionstr = sectionstr + `
-<section class="interior num${s} ${cssstr}" id="${section.id}">`;
-	}
-if(section.title) {
-sectionstr = sectionstr + `
-<header>
-	<h1>${section.title}</h1>
-</header>`;
-}
-if(section.inscription) {
-sectionstr = sectionstr + `
-<div class="inscription">
-${section.inscription}
-</div>`
-}
-if(section.generatorf) {
-	sectionstr = sectionstr + generatefunctions[section.generatorf]();
-}
-else if(section.poems) {
-sectionstr = sectionstr + section.poems.reduce( (poemstr,poemid,p) => {
+</header>
+<section class="interior num1 pagestartnumbers booksection" id="section0">`;
+html = html + tools.shuffle(book.poemids).filter( (p,j)=>j<49 ).reduce( (poemstr,poemid,p) => {
 	//console.log(`poemid=${poemid}`);
 	let poem = poems.filter(poem=>poem.id===poemid)[0];
 	let cssstr = poem.cssclasses ? poem.cssclasses.join(" ") : "";
@@ -184,7 +109,7 @@ sectionstr = sectionstr + section.poems.reduce( (poemstr,poemid,p) => {
 		<h1>${poem.title}</h1>
 	</header>`;
 	poemstr = poemstr + `
-	<div class="flex">;
+	<div class="flex">
 	<div class="content">`;
 	poemstr = poemstr + `
 		${poem.text}`;
@@ -192,7 +117,7 @@ sectionstr = sectionstr + section.poems.reduce( (poemstr,poemid,p) => {
 	</div></div>`
 	if(poem.figure.picture) {
 		poemstr = poemstr + `
-	<figure class="frame">
+	<figure >
 		${poem.figure.picture}
 	</figure>`
 	}
@@ -200,25 +125,20 @@ sectionstr = sectionstr + section.poems.reduce( (poemstr,poemid,p) => {
 </article>`;
 	return poemstr;
 }, "");
-}
-sectionstr = sectionstr+`
-</section>`;
-//<div class="blank"></div>
-
-return sectionstr;
-}, "");
 html = html + `
+</section>
 </main>
+</div>
 </body>
 </html>`;
 let poemids = poems.map(poem => poem.id); 
-let filename = `./print.html`;
+let filename = `./printzine.html`;
 fs.writeFileSync(filename, html, (err) => {
-  if (err)
-    console.log(err);
-  else {
-    console.log(`${filename} written successfully\n`);
-  }
+	if (err)
+		console.log(err);
+	else {
+		console.log(`${filename} written successfully\n`);
+	}
 });
 //console.log(`prince ${filename} -o ./print.pdf`);
 //console.log(`open ./print.pdf`);

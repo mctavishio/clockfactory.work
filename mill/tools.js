@@ -323,6 +323,7 @@ let tools = {
 	},
 	drawp: {
 		circle: p => { return {cx:p.cx,cy:p.cy,r:p.r,"stroke-width":p.sw,"stroke-dashoffset":p.sf,"stroke-dasharray":p.sd,"stroke-opacity":p.so,"fill-opacity":p.fo,stroke:p.strokecolor,fill:p.fillcolor } },
+		ellipse: p => { return {cx:p.cx,cy:p.cy,rx:p.r*1.2, ry:p.r*.8, "stroke-width":p.sw,"stroke-dashoffset":p.sf,"stroke-dasharray":p.sd,"stroke-opacity":p.so,"fill-opacity":p.fo,stroke:p.strokecolor,fill:p.fillcolor } },
 		scircle: p => { return {cx:p.cx,cy:p.cy,r:p.r,"stroke-width":p.sw,"stroke-dashoffset":p.sf,"stroke-dasharray":p.sd,"stroke-opacity":1.0,"fill-opacity":0.0,stroke:p.strokecolor,fill:p.fillcolor } },
 		fcircle: p => { return {cx:p.cx,cy:p.cy,r:p.r,"stroke-width":p.sw,"stroke-dashoffset":p.sf,"stroke-dasharray":p.sd,"stroke-opacity":0.0,"fill-opacity":1.0,stroke:p.strokecolor,fill:p.fillcolor } },
 		rect: p => { return {x:p.cx,y:p.cy,width:p.w,height:p.h,"stroke-width":p.sw,"stroke-dashoffset":p.sf,"stroke-dasharray":p.sd,"stroke-opacity":p.so,"fill-opacity":p.fo,stroke:p.strokecolor,fill:p.fillcolor } },

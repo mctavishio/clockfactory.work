@@ -1,0 +1,14 @@
+gsutil -m cp -r data/mill20240120152036  gs://noisefactory/
+gsutil -m cp -r data/mill20240120153229  gs://noisefactory/
+gsutil -m cp -r data/mill20240120153748  gs://noisefactory/
+gsutil -m cp -r data/mill20240120190952  gs://noisefactory/
+gsutil -m cp -r data/mill20240120191912  gs://noisefactory/
+gsutil -m cp -r data/mill20240120192853  gs://noisefactory/
+gsutil -m cp -r data/mill20240120193546  gs://noisefactory/
+gsutil -m cp -r data/mill20240120200721  gs://noisefactory/
+gsutil -m cp -r data/mill20240120201524  gs://noisefactory/
+gsutil -m cp -r data/mill20240120215240  gs://noisefactory/
+gsutil -m cp -r data/mill20240120220009  gs://noisefactory/
+gsutil -m cp -r data/mill20240120220723  gs://noisefactory/
+gsutil -m cp -r data/mill20240120222203  gs://noisefactory/
+gsutil -m cp -r data/mill20240120223303  gs://noisefactory/
